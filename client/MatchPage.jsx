@@ -7,14 +7,41 @@ import ContentRemove from 'material-ui/svg-icons/content/remove';
 import MatchBox from './MatchBox.jsx';
 import RegexReference from './RegexReference.jsx';
 
+const styles = {
+  slashWrapper: {
+    display: "inline-block",
+    position: "relative",
+    marginRight: "12px"
+  },
+  slashLeft: {
+    position: "absolute",
+    top: "42px",
+    left: "-6px"
+  },
+  slashRight: {
+    position: "absolute",
+    top: "42px",
+    right: "-6px"
+  }
+};
+
 var MatchPage =  React.createClass({
   getInitialState: function() {
-    return { pattern: '', numMatchBoxes: 1 };
+    return {
+      pattern: '',
+      flags: '',
+      numMatchBoxes: 1
+    };
   },
 
   handlePatternChange: function() {
     var value = this.refs.pattern.getValue();
     this.setState({ pattern: value });
+  },
+
+  handleFlagsChange: function() {
+    var value = this.refs.flags.getValue();
+    this.setState({ flags: value });
   },
 
   handleNewMatchBox: function() {
@@ -39,7 +66,7 @@ var MatchPage =  React.createClass({
     var re;
     var errorMessage;
     try {
-      re = new RegExp(this.state.pattern);
+      re = new RegExp(this.state.pattern, this.state.flags);
     } catch(err) {
       re = new RegExp();
       errorMessage = err.message;
@@ -54,14 +81,29 @@ var MatchPage =  React.createClass({
           </div>
           <div className='col-xs-10 col-sm-8'>
             <div className='container-fluid'>
-              <TextField
-                floatingLabelText='Enter Regex Here'
-                value={this.state.pattern}
-                onChange={this.handlePatternChange}
-                ref='pattern'
-                errorText={errorMessage}
-              /><br />
+              <span style={styles.slashWrapper}>
+                <span style={styles.slashLeft}>/</span>
+                <TextField
+                  floatingLabelText='Enter Regex Here'
+                  value={this.state.pattern}
+                  onChange={this.handlePatternChange}
+                  style={{float: "left"}}
+                  ref='pattern'
+                  errorText={errorMessage}
+                />
+                <span style={styles.slashRight}>/</span>
+              </span>
+              <span style={{display: "inline-block", position: "relative"}}>
+                <TextField
+                  floatingLabelText='Flags'
+                  value={this.state.flags}
+                  onChange={this.handleFlagsChange}
+                  style={{float: "left"}}
+                  ref='flags'
+                />
+              </span>
             </div>
+            <br />
             <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
               {this.renderMatchBoxes(re)}
             </ReactCSSTransitionGroup>

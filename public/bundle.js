@@ -38168,16 +38168,43 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var styles = {
+	  slashWrapper: {
+	    display: "inline-block",
+	    position: "relative",
+	    marginRight: "12px"
+	  },
+	  slashLeft: {
+	    position: "absolute",
+	    top: "42px",
+	    left: "-6px"
+	  },
+	  slashRight: {
+	    position: "absolute",
+	    top: "42px",
+	    right: "-6px"
+	  }
+	};
+
 	var MatchPage = _react2.default.createClass({
 	  displayName: 'MatchPage',
 
 	  getInitialState: function getInitialState() {
-	    return { pattern: '', numMatchBoxes: 1 };
+	    return {
+	      pattern: '',
+	      flags: '',
+	      numMatchBoxes: 1
+	    };
 	  },
 
 	  handlePatternChange: function handlePatternChange() {
 	    var value = this.refs.pattern.getValue();
 	    this.setState({ pattern: value });
+	  },
+
+	  handleFlagsChange: function handleFlagsChange() {
+	    var value = this.refs.flags.getValue();
+	    this.setState({ flags: value });
 	  },
 
 	  handleNewMatchBox: function handleNewMatchBox() {
@@ -38206,7 +38233,7 @@
 	    var re;
 	    var errorMessage;
 	    try {
-	      re = new RegExp(this.state.pattern);
+	      re = new RegExp(this.state.pattern, this.state.flags);
 	    } catch (err) {
 	      re = new RegExp();
 	      errorMessage = err.message;
@@ -38238,15 +38265,41 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'container-fluid' },
-	            _react2.default.createElement(_TextField2.default, {
-	              floatingLabelText: 'Enter Regex Here',
-	              value: this.state.pattern,
-	              onChange: this.handlePatternChange,
-	              ref: 'pattern',
-	              errorText: errorMessage
-	            }),
-	            _react2.default.createElement('br', null)
+	            _react2.default.createElement(
+	              'span',
+	              { style: styles.slashWrapper },
+	              _react2.default.createElement(
+	                'span',
+	                { style: styles.slashLeft },
+	                '/'
+	              ),
+	              _react2.default.createElement(_TextField2.default, {
+	                floatingLabelText: 'Enter Regex Here',
+	                value: this.state.pattern,
+	                onChange: this.handlePatternChange,
+	                style: { float: "left" },
+	                ref: 'pattern',
+	                errorText: errorMessage
+	              }),
+	              _react2.default.createElement(
+	                'span',
+	                { style: styles.slashRight },
+	                '/'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'span',
+	              { style: { display: "inline-block", position: "relative" } },
+	              _react2.default.createElement(_TextField2.default, {
+	                floatingLabelText: 'Flags',
+	                value: this.state.flags,
+	                onChange: this.handleFlagsChange,
+	                style: { float: "left" },
+	                ref: 'flags'
+	              })
+	            )
 	          ),
+	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(
 	            _reactAddonsCssTransitionGroup2.default,
 	            { transitionName: 'example', transitionEnterTimeout: 500, transitionLeaveTimeout: 300 },

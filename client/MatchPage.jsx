@@ -53,7 +53,6 @@ var MatchPage =  React.createClass({
     return {
       pattern: '',
       flags: '',
-      numMatchBoxes: 1,
       matchBoxValues: ['']
     };
   },
@@ -82,13 +81,13 @@ var MatchPage =  React.createClass({
   },
 
   handleNewMatchBox: function() {
-    var current = this.state.numMatchBoxes;
-    this.setState({ numMatchBoxes: current + 1 });
+    this.state.matchBoxValues.push('');
+    this.setState({ matchBoxValues: this.state.matchBoxValues });
   },
 
   handleRemoveMatchBox: function() {
-    var current = this.state.numMatchBoxes;
-    this.setState({ numMatchBoxes: current - 1 });
+    this.state.matchBoxValues.pop();
+    this.setState({ matchBoxValues: this.state.matchBoxValues });
   },
 
   renderMatchBoxes: function(re) {
@@ -159,7 +158,7 @@ var MatchPage =  React.createClass({
             >
               <ContentAdd />
             </FloatingActionButton>
-            {(this.state.numMatchBoxes > 1) ?
+            {(this.state.matchBoxValues.length > 1) ?
               <FloatingActionButton
                 mini={true}
                 style={styles.actionButton}

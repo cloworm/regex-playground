@@ -38219,7 +38219,6 @@
 	    return {
 	      pattern: '',
 	      flags: '',
-	      numMatchBoxes: 1,
 	      matchBoxValues: ['']
 	    };
 	  },
@@ -38248,13 +38247,13 @@
 	  },
 
 	  handleNewMatchBox: function handleNewMatchBox() {
-	    var current = this.state.numMatchBoxes;
-	    this.setState({ numMatchBoxes: current + 1 });
+	    this.state.matchBoxValues.push('');
+	    this.setState({ matchBoxValues: this.state.matchBoxValues });
 	  },
 
 	  handleRemoveMatchBox: function handleRemoveMatchBox() {
-	    var current = this.state.numMatchBoxes;
-	    this.setState({ numMatchBoxes: current - 1 });
+	    this.state.matchBoxValues.pop();
+	    this.setState({ matchBoxValues: this.state.matchBoxValues });
 	  },
 
 	  renderMatchBoxes: function renderMatchBoxes(re) {
@@ -38358,7 +38357,7 @@
 	            },
 	            _react2.default.createElement(_add2.default, null)
 	          ),
-	          this.state.numMatchBoxes > 1 ? _react2.default.createElement(
+	          this.state.matchBoxValues.length > 1 ? _react2.default.createElement(
 	            _FloatingActionButton2.default,
 	            {
 	              mini: true,

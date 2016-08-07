@@ -1,7 +1,7 @@
 import React from "react";
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import Navbar from './Navbar.jsx';
@@ -30,16 +30,8 @@ var App = React.createClass({
       <MuiThemeProvider>
         <div>
           <Navbar onNavigate={this.handleNavigate} />
-          {this.renderPage()}
           <div className='container-fluid'>
-            <div className='row'>
-              <div className='col-xs-12 col-sm-6'>
-                <h1>Welcome To My Boilerplate</h1>
-              </div>
-              <div className='col-xs-12 col-sm-6'>
-                <RaisedButton label='Hello' />
-              </div>
-            </div>
+            {this.renderPage()}
           </div>
         </div>
       </MuiThemeProvider>

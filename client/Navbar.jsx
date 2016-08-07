@@ -24,12 +24,10 @@ var Navbar =  React.createClass({
 
   render: function() {
     return (
-      <Toolbar>
-        <ToolbarGroup>
-          <RaisedButton label="About" primary={true} onClick={this.props.onNavigate.bind(null, 'about')}/>
-          <RaisedButton label="Match" secondary={true} onClick={this.props.onNavigate.bind(null, 'match')} />
-        </ToolbarGroup>
-      </Toolbar>
+      <div>
+        <RaisedButton label="About" primary={true} onClick={this.props.onNavigate.bind(null, 'about')}/>
+        <RaisedButton label="Match" secondary={true} onClick={this.props.onNavigate.bind(null, 'match')} />
+      </div>
     );
   }
 })

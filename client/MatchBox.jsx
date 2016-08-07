@@ -2,6 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import Subheader from 'material-ui/Subheader';
+import MatchItem from './MatchItem.jsx';
 
 var MatchBox =  React.createClass({
   propTypes: {
@@ -17,10 +18,37 @@ var MatchBox =  React.createClass({
     this.setState({ matchText: value });
   },
 
+  renderMatchGroups: function() {
+    if (this.state.matchText && this.props.pattern) {
+      var re = this.props.pattern;
+      var match = this.state.matchText.match(re);
+      console.log(match);
+      if (match) {
+        return match.map(function(matchItem, index) {
+          return (
+            <MatchItem key={index} item={matchItem} />
+          )
+        });
+      } else {
+        return 'No matches yet';
+      }
+    } else {
+      return 'No matches yet';
+    }
+  },
+
   renderMatchResult: function() {
     if (this.state.matchText && this.props.pattern) {
       var re = this.props.pattern;
-      return this.state.matchText.match(re);
+      var match = this.state.matchText.match(re);
+      console.log(match);
+      if (match) {
+        return match[0];
+      } else {
+        return 'No matches yet';
+      }
+    } else {
+      return 'No matches yet';
     }
   },
 
@@ -43,6 +71,7 @@ var MatchBox =  React.createClass({
               <Subheader>Matched Result</Subheader>
               {this.renderMatchResult()}
               <Subheader>Matched Groups</Subheader>
+              {this.renderMatchGroups()}
             </div>
           </div>
         </div>

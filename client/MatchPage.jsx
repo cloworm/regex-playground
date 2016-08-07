@@ -1,16 +1,31 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 import MatchBox from './MatchBox.jsx';
 import RegexReference from './RegexReference.jsx';
 
 var MatchPage =  React.createClass({
   getInitialState: function() {
-    return { pattern: '' };
+    return { pattern: '', numMatchBoxes: 1 };
   },
 
   handlePatternChange: function() {
     var value = this.refs.pattern.getValue();
     this.setState({ pattern: value });
+  },
+
+  handleNewMatchBox: function() {
+    var current = this.state.numMatchBoxes;
+    this.setState({ numMatchBoxes: current + 1 });
+  },
+
+  renderMatchBoxes: function(re) {
+    var boxes = [];
+    for(var i = 0; i < this.state.numMatchBoxes; i++) {
+      boxes.push(<div key={i} style={{ margin: '15px' }}><MatchBox pattern={re} /></div>);
+    }
+    return boxes;
   },
 
   render: function() {
@@ -40,10 +55,15 @@ var MatchPage =  React.createClass({
                 errorText={errorMessage}
               /><br />
             </div>
-            <MatchBox
-              pattern={re}
-            />
-            <br />
+            {this.renderMatchBoxes(re)}
+            <FloatingActionButton
+              secondary={true}
+              mini={true}
+              style={{ float: 'right' }}
+              onClick={this.handleNewMatchBox}
+            >
+              <ContentAdd />
+            </FloatingActionButton>
           </div>
         </div>
       </div>

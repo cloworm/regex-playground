@@ -2,6 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import ContentRemove from 'material-ui/svg-icons/content/remove';
 import MatchBox from './MatchBox.jsx';
 import RegexReference from './RegexReference.jsx';
 
@@ -18,6 +19,11 @@ var MatchPage =  React.createClass({
   handleNewMatchBox: function() {
     var current = this.state.numMatchBoxes;
     this.setState({ numMatchBoxes: current + 1 });
+  },
+
+  handleRemoveMatchBox: function() {
+    var current = this.state.numMatchBoxes;
+    this.setState({ numMatchBoxes: current - 1 });
   },
 
   renderMatchBoxes: function(re) {
@@ -64,6 +70,16 @@ var MatchPage =  React.createClass({
             >
               <ContentAdd />
             </FloatingActionButton>
+            {(this.state.numMatchBoxes > 1) ?
+              <FloatingActionButton
+                primary={true}
+                mini={true}
+                style={{ float: 'right' }}
+                onClick={this.handleRemoveMatchBox}
+              >
+                <ContentRemove />
+              </FloatingActionButton> : null
+            }
           </div>
         </div>
       </div>

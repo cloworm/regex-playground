@@ -38150,6 +38150,10 @@
 
 	var _add2 = _interopRequireDefault(_add);
 
+	var _remove = __webpack_require__(440);
+
+	var _remove2 = _interopRequireDefault(_remove);
+
 	var _MatchBox = __webpack_require__(431);
 
 	var _MatchBox2 = _interopRequireDefault(_MatchBox);
@@ -38175,6 +38179,11 @@
 	  handleNewMatchBox: function handleNewMatchBox() {
 	    var current = this.state.numMatchBoxes;
 	    this.setState({ numMatchBoxes: current + 1 });
+	  },
+
+	  handleRemoveMatchBox: function handleRemoveMatchBox() {
+	    var current = this.state.numMatchBoxes;
+	    this.setState({ numMatchBoxes: current - 1 });
 	  },
 
 	  renderMatchBoxes: function renderMatchBoxes(re) {
@@ -38244,7 +38253,17 @@
 	              onClick: this.handleNewMatchBox
 	            },
 	            _react2.default.createElement(_add2.default, null)
-	          )
+	          ),
+	          this.state.numMatchBoxes > 1 ? _react2.default.createElement(
+	            _FloatingActionButton2.default,
+	            {
+	              primary: true,
+	              mini: true,
+	              style: { float: 'right' },
+	              onClick: this.handleRemoveMatchBox
+	            },
+	            _react2.default.createElement(_remove2.default, null)
+	          ) : null
 	        )
 	      )
 	    );
@@ -40921,6 +40940,43 @@
 	Divider.contextTypes = contextTypes;
 
 	exports.default = Divider;
+
+/***/ },
+/* 440 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _pure = __webpack_require__(382);
+
+	var _pure2 = _interopRequireDefault(_pure);
+
+	var _SvgIcon = __webpack_require__(391);
+
+	var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ContentRemove = function ContentRemove(props) {
+	  return _react2.default.createElement(
+	    _SvgIcon2.default,
+	    props,
+	    _react2.default.createElement('path', { d: 'M19 13H5v-2h14v2z' })
+	  );
+	};
+	ContentRemove = (0, _pure2.default)(ContentRemove);
+	ContentRemove.displayName = 'ContentRemove';
+	ContentRemove.muiName = 'SvgIcon';
+
+	exports.default = ContentRemove;
 
 /***/ }
 /******/ ]);

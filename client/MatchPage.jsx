@@ -118,15 +118,12 @@ var MatchPage =  React.createClass({
       <div>
         <h1>Match Page</h1>
         <div className='row'>
-          <div className='col-xs-2 col-sm-4'>
-            <h3>Reference</h3>
-          </div>
-          <div className='col-xs-10 col-sm-8'>
+          <div className='col-xs-12 col-md-8'>
             <div className='container-fluid'>
               <span style={styles.slashWrapper}>
                 <span style={styles.slashLeft}>/</span>
                 <TextField
-                  floatingLabelText='Enter Regex Here'
+                  floatingLabelText='Pattern'
                   value={this.state.pattern}
                   onChange={this.handlePatternChange}
                   style={styles.patternField}
@@ -167,6 +164,9 @@ var MatchPage =  React.createClass({
                 <ContentRemove />
               </FloatingActionButton> : null
             }
+          </div>
+          <div className='col-xs-12 col-md-4'>
+            <RegexReference />
           </div>
         </div>
       </div>

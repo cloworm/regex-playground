@@ -55,7 +55,7 @@ var Navbar =  React.createClass({
               open={this.state.open}
               onRequestClose={this.handleDialogClose}
             >
-              Made by <a href='http://github.com/cloworm' target='_blank'>Cloworm</a>
+              Made by <a href='http://github.com/cloworm' target='_blank'>Chloe Echikson</a>
             </Dialog>
               <Info />
             </IconButton>

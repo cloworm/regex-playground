@@ -4,6 +4,12 @@ import Paper from 'material-ui/Paper';
 import Subheader from 'material-ui/Subheader';
 import MatchItem from './MatchItem.jsx';
 
+const styles = {
+  matchResultsMargin: {
+    marginBottom: '10px'
+  }
+}
+
 var MatchBox =  React.createClass({
   propTypes: {
     pattern: React.PropTypes.instanceOf(RegExp).isRequired
@@ -22,7 +28,6 @@ var MatchBox =  React.createClass({
     if (this.state.matchText && this.props.pattern) {
       var re = this.props.pattern;
       var match = this.state.matchText.match(re);
-      console.log(match);
       if (match) {
         return match.map(function(matchItem, index) {
           return (
@@ -41,7 +46,6 @@ var MatchBox =  React.createClass({
     if (this.state.matchText && this.props.pattern) {
       var re = this.props.pattern;
       var match = this.state.matchText.match(re);
-      console.log(match);
       if (match) {
         return match[0];
       } else {
@@ -61,6 +65,7 @@ var MatchBox =  React.createClass({
               <TextField
                 floatingLabelText='Enter Text to Match'
                 multiLine={true}
+                fullWidth={true}
                 rows={3}
                 value={this.state.matchText}
                 onChange={this.handleMatchTextChange}
@@ -68,10 +73,12 @@ var MatchBox =  React.createClass({
               />
             </div>
             <div className='col-xs-6'>
-              <Subheader>Matched Result</Subheader>
-              {this.renderMatchResult()}
-              <Subheader>Matched Groups</Subheader>
-              {this.renderMatchGroups()}
+              <div style={styles.matchResultsMargin}>
+                <Subheader>Matched Result</Subheader>
+                {this.renderMatchResult()}
+                <Subheader>Matched Groups</Subheader>
+                {this.renderMatchGroups()}
+              </div>
             </div>
           </div>
         </div>

@@ -8,7 +8,6 @@ import Navbar from './Navbar.jsx';
 import AboutPage from './AboutPage.jsx';
 import MatchPage from './MatchPage.jsx';
 
-
 var App = React.createClass({
   getInitialState: function() {
     return { currentPage: 'match' };

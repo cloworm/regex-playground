@@ -8,20 +8,33 @@ import MatchBox from './MatchBox.jsx';
 import RegexReference from './RegexReference.jsx';
 
 const styles = {
-  slashWrapper: {
-    display: "inline-block",
-    position: "relative",
-    marginRight: "12px"
+  actionButton: {
+    float: 'right'
+  },
+  flagsField: {
+    float: 'left',
+    width: '50px'
+  },
+  matchBoxMargin: {
+    margin: '15px'
+  },
+  patternField: {
+    float: 'left'
   },
   slashLeft: {
-    position: "absolute",
-    top: "42px",
-    left: "-6px"
+    position: 'absolute',
+    top: '42px',
+    left: '-6px'
   },
   slashRight: {
-    position: "absolute",
-    top: "42px",
-    right: "-6px"
+    position: 'absolute',
+    top: '42px',
+    right: '-6px'
+  },
+  slashWrapper: {
+    display: 'inline-block',
+    position: 'relative',
+    marginRight: '12px'
   }
 };
 
@@ -57,7 +70,7 @@ var MatchPage =  React.createClass({
   renderMatchBoxes: function(re) {
     var boxes = [];
     for(var i = 0; i < this.state.numMatchBoxes; i++) {
-      boxes.push(<div key={i} style={{ margin: '15px' }}><MatchBox pattern={re} /></div>);
+      boxes.push(<div key={i} style={styles.matchBoxMargin}><MatchBox pattern={re} /></div>);
     }
     return boxes;
   },
@@ -87,30 +100,30 @@ var MatchPage =  React.createClass({
                   floatingLabelText='Enter Regex Here'
                   value={this.state.pattern}
                   onChange={this.handlePatternChange}
-                  style={{float: "left"}}
+                  style={styles.patternField}
                   ref='pattern'
                   errorText={errorMessage}
                 />
                 <span style={styles.slashRight}>/</span>
               </span>
-              <span style={{display: "inline-block", position: "relative"}}>
+              <span style={{display: 'inline-block', position: 'relative'}}>
                 <TextField
                   floatingLabelText='Flags'
                   value={this.state.flags}
                   onChange={this.handleFlagsChange}
-                  style={{float: "left"}}
+                  style={styles.flagsField}
                   ref='flags'
                 />
               </span>
             </div>
             <br />
-            <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+            <ReactCSSTransitionGroup transitionName='right-side-fade' transitionEnterTimeout={500} transitionLeaveTimeout={300}>
               {this.renderMatchBoxes(re)}
             </ReactCSSTransitionGroup>
             <FloatingActionButton
               secondary={true}
               mini={true}
-              style={{ float: 'right' }}
+              style={styles.actionButton}
               onClick={this.handleNewMatchBox}
             >
               <ContentAdd />
@@ -118,7 +131,7 @@ var MatchPage =  React.createClass({
             {(this.state.numMatchBoxes > 1) ?
               <FloatingActionButton
                 mini={true}
-                style={{ float: 'right' }}
+                style={styles.actionButton}
                 onClick={this.handleRemoveMatchBox}
               >
                 <ContentRemove />

@@ -52,23 +52,23 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-.example-enter {
+.right-side-fade-enter {
   opacity: 0.01;
   transform: translate3d(20px, 0px, 0px);
 }
 
-.example-enter.example-enter-active {
+.right-side-fade-enter.right-side-fade-enter-active {
   opacity: 1;
   transform: translate3d(0px, 0px, 0px);
   transition: all 300ms ease-out;
 }
 
-.example-leave {
+.right-side-fade-leave {
   opacity: 1;
   transform: translate3d(0px, 0px, 0px);
 }
 
-.example-leave.example-leave-active {
+.right-side-fade-leave.right-side-fade-leave-active {
   opacity: 0.01;
   transform: translate3d(20px, 0px, 0px);
   transition: all 300ms ease-out;

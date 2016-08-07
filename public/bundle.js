@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _react = __webpack_require__(1);
 
@@ -54,13 +54,13 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _App = __webpack_require__(175);
-
-	var _App2 = _interopRequireDefault(_App);
-
 	var _reactTapEventPlugin = __webpack_require__(440);
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
+
+	var _App = __webpack_require__(175);
+
+	var _App2 = _interopRequireDefault(_App);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38169,20 +38169,33 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var styles = {
-	  slashWrapper: {
-	    display: "inline-block",
-	    position: "relative",
-	    marginRight: "12px"
+	  actionButton: {
+	    float: 'right'
+	  },
+	  flagsField: {
+	    float: 'left',
+	    width: '50px'
+	  },
+	  matchBoxMargin: {
+	    margin: '15px'
+	  },
+	  patternField: {
+	    float: 'left'
 	  },
 	  slashLeft: {
-	    position: "absolute",
-	    top: "42px",
-	    left: "-6px"
+	    position: 'absolute',
+	    top: '42px',
+	    left: '-6px'
 	  },
 	  slashRight: {
-	    position: "absolute",
-	    top: "42px",
-	    right: "-6px"
+	    position: 'absolute',
+	    top: '42px',
+	    right: '-6px'
+	  },
+	  slashWrapper: {
+	    display: 'inline-block',
+	    position: 'relative',
+	    marginRight: '12px'
 	  }
 	};
 
@@ -38222,7 +38235,7 @@
 	    for (var i = 0; i < this.state.numMatchBoxes; i++) {
 	      boxes.push(_react2.default.createElement(
 	        'div',
-	        { key: i, style: { margin: '15px' } },
+	        { key: i, style: styles.matchBoxMargin },
 	        _react2.default.createElement(_MatchBox2.default, { pattern: re })
 	      ));
 	    }
@@ -38277,7 +38290,7 @@
 	                floatingLabelText: 'Enter Regex Here',
 	                value: this.state.pattern,
 	                onChange: this.handlePatternChange,
-	                style: { float: "left" },
+	                style: styles.patternField,
 	                ref: 'pattern',
 	                errorText: errorMessage
 	              }),
@@ -38289,12 +38302,12 @@
 	            ),
 	            _react2.default.createElement(
 	              'span',
-	              { style: { display: "inline-block", position: "relative" } },
+	              { style: { display: 'inline-block', position: 'relative' } },
 	              _react2.default.createElement(_TextField2.default, {
 	                floatingLabelText: 'Flags',
 	                value: this.state.flags,
 	                onChange: this.handleFlagsChange,
-	                style: { float: "left" },
+	                style: styles.flagsField,
 	                ref: 'flags'
 	              })
 	            )
@@ -38302,7 +38315,7 @@
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(
 	            _reactAddonsCssTransitionGroup2.default,
-	            { transitionName: 'example', transitionEnterTimeout: 500, transitionLeaveTimeout: 300 },
+	            { transitionName: 'right-side-fade', transitionEnterTimeout: 500, transitionLeaveTimeout: 300 },
 	            this.renderMatchBoxes(re)
 	          ),
 	          _react2.default.createElement(
@@ -38310,7 +38323,7 @@
 	            {
 	              secondary: true,
 	              mini: true,
-	              style: { float: 'right' },
+	              style: styles.actionButton,
 	              onClick: this.handleNewMatchBox
 	            },
 	            _react2.default.createElement(_add2.default, null)
@@ -38319,7 +38332,7 @@
 	            _FloatingActionButton2.default,
 	            {
 	              mini: true,
-	              style: { float: 'right' },
+	              style: styles.actionButton,
 	              onClick: this.handleRemoveMatchBox
 	            },
 	            _react2.default.createElement(_remove2.default, null)
@@ -40442,6 +40455,12 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var styles = {
+	  matchResultsMargin: {
+	    marginBottom: '10px'
+	  }
+	};
+
 	var MatchBox = _react2.default.createClass({
 	  displayName: 'MatchBox',
 
@@ -40462,7 +40481,6 @@
 	    if (this.state.matchText && this.props.pattern) {
 	      var re = this.props.pattern;
 	      var match = this.state.matchText.match(re);
-	      console.log(match);
 	      if (match) {
 	        return match.map(function (matchItem, index) {
 	          return _react2.default.createElement(_MatchItem2.default, { key: index, item: matchItem });
@@ -40479,7 +40497,6 @@
 	    if (this.state.matchText && this.props.pattern) {
 	      var re = this.props.pattern;
 	      var match = this.state.matchText.match(re);
-	      console.log(match);
 	      if (match) {
 	        return match[0];
 	      } else {
@@ -40506,6 +40523,7 @@
 	            _react2.default.createElement(_TextField2.default, {
 	              floatingLabelText: 'Enter Text to Match',
 	              multiLine: true,
+	              fullWidth: true,
 	              rows: 3,
 	              value: this.state.matchText,
 	              onChange: this.handleMatchTextChange,
@@ -40516,17 +40534,21 @@
 	            'div',
 	            { className: 'col-xs-6' },
 	            _react2.default.createElement(
-	              _Subheader2.default,
-	              null,
-	              'Matched Result'
-	            ),
-	            this.renderMatchResult(),
-	            _react2.default.createElement(
-	              _Subheader2.default,
-	              null,
-	              'Matched Groups'
-	            ),
-	            this.renderMatchGroups()
+	              'div',
+	              { style: styles.matchResultsMargin },
+	              _react2.default.createElement(
+	                _Subheader2.default,
+	                null,
+	                'Matched Result'
+	              ),
+	              this.renderMatchResult(),
+	              _react2.default.createElement(
+	                _Subheader2.default,
+	                null,
+	                'Matched Groups'
+	              ),
+	              this.renderMatchGroups()
+	            )
 	          )
 	        )
 	      )

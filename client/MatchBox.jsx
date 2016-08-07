@@ -12,22 +12,20 @@ const styles = {
 
 var MatchBox =  React.createClass({
   propTypes: {
-    pattern: React.PropTypes.instanceOf(RegExp).isRequired
-  },
-
-  getInitialState: function() {
-    return { matchText: '' };
+    pattern: React.PropTypes.instanceOf(RegExp).isRequired,
+    value: React.PropTypes.string.isRequired,
+    onChange: React.PropTypes.func.isRequired
   },
 
   handleMatchTextChange: function() {
     var value = this.refs.matchText.getValue();
-    this.setState({ matchText: value });
+    this.props.onChange(value);
   },
 
   renderMatchGroups: function() {
-    if (this.state.matchText && this.props.pattern) {
+    if (this.props.value && this.props.pattern) {
       var re = this.props.pattern;
-      var match = this.state.matchText.match(re);
+      var match = this.props.value.match(re);
       if (match) {
         return match.map(function(matchItem, index) {
           return (
@@ -43,9 +41,9 @@ var MatchBox =  React.createClass({
   },
 
   renderMatchResult: function() {
-    if (this.state.matchText && this.props.pattern) {
+    if (this.props.value && this.props.pattern) {
       var re = this.props.pattern;
-      var match = this.state.matchText.match(re);
+      var match = this.props.value.match(re);
       if (match) {
         return match[0];
       } else {
@@ -67,7 +65,7 @@ var MatchBox =  React.createClass({
                 multiLine={true}
                 fullWidth={true}
                 rows={3}
-                value={this.state.matchText}
+                value={this.props.value}
                 onChange={this.handleMatchTextChange}
                 ref='matchText'
               />

@@ -4,6 +4,7 @@ import TextField from 'material-ui/TextField';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentRemove from 'material-ui/svg-icons/content/remove';
+import RaisedButton from 'material-ui/RaisedButton';
 import MatchBox from './MatchBox.jsx';
 import RegexReference from './RegexReference.jsx';
 
@@ -11,9 +12,18 @@ const styles = {
   actionButton: {
     float: 'right'
   },
+  exampleButton: {
+    marginBottom: '10px',
+    marginLeft: '30px',
+    verticalAlign: 'bottom'
+  },
   flagsField: {
     float: 'left',
     width: '50px'
+  },
+  flagsFieldSpan: {
+    display: 'inline-block',
+    position: 'relative'
   },
   matchBoxMargin: {
     margin: '15px'
@@ -43,8 +53,17 @@ var MatchPage =  React.createClass({
     return {
       pattern: '',
       flags: '',
-      numMatchBoxes: 1
+      numMatchBoxes: 1,
+      matchBoxValues: ['']
     };
+  },
+
+  handleClickExample: function() {
+    this.setState({
+      pattern: 'a',
+      flags: 'gi',
+      matchBoxValues: ['banana']
+    });
   },
 
   handlePatternChange: function() {
@@ -55,6 +74,11 @@ var MatchPage =  React.createClass({
   handleFlagsChange: function() {
     var value = this.refs.flags.getValue();
     this.setState({ flags: value });
+  },
+
+  handleMatchBoxChange: function(index, value) {
+    this.state.matchBoxValues[index] = value;
+    this.setState({ matchBoxValues: this.state.matchBoxValues });
   },
 
   handleNewMatchBox: function() {
@@ -68,11 +92,17 @@ var MatchPage =  React.createClass({
   },
 
   renderMatchBoxes: function(re) {
-    var boxes = [];
-    for(var i = 0; i < this.state.numMatchBoxes; i++) {
-      boxes.push(<div key={i} style={styles.matchBoxMargin}><MatchBox pattern={re} /></div>);
-    }
-    return boxes;
+    return this.state.matchBoxValues.map(function(value, i) {
+      return (
+        <div key={i} style={styles.matchBoxMargin}>
+          <MatchBox
+            pattern={re}
+            value={value}
+            onChange={this.handleMatchBoxChange.bind(null, i)}
+          />
+        </div>
+      )
+    }.bind(this))
   },
 
   render: function() {
@@ -106,7 +136,7 @@ var MatchPage =  React.createClass({
                 />
                 <span style={styles.slashRight}>/</span>
               </span>
-              <span style={{display: 'inline-block', position: 'relative'}}>
+              <span style={styles.flagsFieldSpan}>
                 <TextField
                   floatingLabelText='Flags'
                   value={this.state.flags}
@@ -115,6 +145,7 @@ var MatchPage =  React.createClass({
                   ref='flags'
                 />
               </span>
+              <RaisedButton label='Example' style={styles.exampleButton} onClick={this.handleClickExample} />
             </div>
             <br />
             <ReactCSSTransitionGroup transitionName='right-side-fade' transitionEnterTimeout={500} transitionLeaveTimeout={300}>

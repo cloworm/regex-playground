@@ -38158,6 +38158,10 @@
 
 	var _remove2 = _interopRequireDefault(_remove);
 
+	var _RaisedButton = __webpack_require__(337);
+
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
 	var _MatchBox = __webpack_require__(431);
 
 	var _MatchBox2 = _interopRequireDefault(_MatchBox);
@@ -38172,9 +38176,18 @@
 	  actionButton: {
 	    float: 'right'
 	  },
+	  exampleButton: {
+	    marginBottom: '10px',
+	    marginLeft: '30px',
+	    verticalAlign: 'bottom'
+	  },
 	  flagsField: {
 	    float: 'left',
 	    width: '50px'
+	  },
+	  flagsFieldSpan: {
+	    display: 'inline-block',
+	    position: 'relative'
 	  },
 	  matchBoxMargin: {
 	    margin: '15px'
@@ -38206,8 +38219,17 @@
 	    return {
 	      pattern: '',
 	      flags: '',
-	      numMatchBoxes: 1
+	      numMatchBoxes: 1,
+	      matchBoxValues: ['']
 	    };
+	  },
+
+	  handleClickExample: function handleClickExample() {
+	    this.setState({
+	      pattern: 'a',
+	      flags: 'gi',
+	      matchBoxValues: ['banana']
+	    });
 	  },
 
 	  handlePatternChange: function handlePatternChange() {
@@ -38218,6 +38240,11 @@
 	  handleFlagsChange: function handleFlagsChange() {
 	    var value = this.refs.flags.getValue();
 	    this.setState({ flags: value });
+	  },
+
+	  handleMatchBoxChange: function handleMatchBoxChange(index, value) {
+	    this.state.matchBoxValues[index] = value;
+	    this.setState({ matchBoxValues: this.state.matchBoxValues });
 	  },
 
 	  handleNewMatchBox: function handleNewMatchBox() {
@@ -38231,15 +38258,17 @@
 	  },
 
 	  renderMatchBoxes: function renderMatchBoxes(re) {
-	    var boxes = [];
-	    for (var i = 0; i < this.state.numMatchBoxes; i++) {
-	      boxes.push(_react2.default.createElement(
+	    return this.state.matchBoxValues.map(function (value, i) {
+	      return _react2.default.createElement(
 	        'div',
 	        { key: i, style: styles.matchBoxMargin },
-	        _react2.default.createElement(_MatchBox2.default, { pattern: re })
-	      ));
-	    }
-	    return boxes;
+	        _react2.default.createElement(_MatchBox2.default, {
+	          pattern: re,
+	          value: value,
+	          onChange: this.handleMatchBoxChange.bind(null, i)
+	        })
+	      );
+	    }.bind(this));
 	  },
 
 	  render: function render() {
@@ -38302,7 +38331,7 @@
 	            ),
 	            _react2.default.createElement(
 	              'span',
-	              { style: { display: 'inline-block', position: 'relative' } },
+	              { style: styles.flagsFieldSpan },
 	              _react2.default.createElement(_TextField2.default, {
 	                floatingLabelText: 'Flags',
 	                value: this.state.flags,
@@ -38310,7 +38339,8 @@
 	                style: styles.flagsField,
 	                ref: 'flags'
 	              })
-	            )
+	            ),
+	            _react2.default.createElement(_RaisedButton2.default, { label: 'Example', style: styles.exampleButton, onClick: this.handleClickExample })
 	          ),
 	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(
@@ -40465,22 +40495,20 @@
 	  displayName: 'MatchBox',
 
 	  propTypes: {
-	    pattern: _react2.default.PropTypes.instanceOf(RegExp).isRequired
-	  },
-
-	  getInitialState: function getInitialState() {
-	    return { matchText: '' };
+	    pattern: _react2.default.PropTypes.instanceOf(RegExp).isRequired,
+	    value: _react2.default.PropTypes.string.isRequired,
+	    onChange: _react2.default.PropTypes.func.isRequired
 	  },
 
 	  handleMatchTextChange: function handleMatchTextChange() {
 	    var value = this.refs.matchText.getValue();
-	    this.setState({ matchText: value });
+	    this.props.onChange(value);
 	  },
 
 	  renderMatchGroups: function renderMatchGroups() {
-	    if (this.state.matchText && this.props.pattern) {
+	    if (this.props.value && this.props.pattern) {
 	      var re = this.props.pattern;
-	      var match = this.state.matchText.match(re);
+	      var match = this.props.value.match(re);
 	      if (match) {
 	        return match.map(function (matchItem, index) {
 	          return _react2.default.createElement(_MatchItem2.default, { key: index, item: matchItem });
@@ -40494,9 +40522,9 @@
 	  },
 
 	  renderMatchResult: function renderMatchResult() {
-	    if (this.state.matchText && this.props.pattern) {
+	    if (this.props.value && this.props.pattern) {
 	      var re = this.props.pattern;
-	      var match = this.state.matchText.match(re);
+	      var match = this.props.value.match(re);
 	      if (match) {
 	        return match[0];
 	      } else {
@@ -40525,7 +40553,7 @@
 	              multiLine: true,
 	              fullWidth: true,
 	              rows: 3,
-	              value: this.state.matchText,
+	              value: this.props.value,
 	              onChange: this.handleMatchTextChange,
 	              ref: 'matchText'
 	            })

@@ -38155,8 +38155,25 @@
 	var MatchPage = _react2.default.createClass({
 	  displayName: 'MatchPage',
 
+	  getInitialState: function getInitialState() {
+	    return { pattern: '' };
+	  },
+
+	  handlePatternChange: function handlePatternChange() {
+	    var value = this.refs.pattern.getValue();
+	    this.setState({ pattern: value });
+	  },
 
 	  render: function render() {
+	    var re;
+	    var errorMessage;
+	    try {
+	      re = new RegExp(this.state.pattern);
+	    } catch (err) {
+	      re = new RegExp();
+	      errorMessage = err.message;
+	    }
+
 	    return _react2.default.createElement(
 	      'div',
 	      null,
@@ -38171,7 +38188,11 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'col-xs-2 col-sm-4' },
-	          _react2.default.createElement(_RegexReference2.default, null)
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            'Reference'
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -38180,11 +38201,17 @@
 	            'div',
 	            { className: 'container-fluid' },
 	            _react2.default.createElement(_TextField2.default, {
-	              floatingLabelText: 'Enter Regex Here'
+	              floatingLabelText: 'Enter Regex Here',
+	              value: this.state.pattern,
+	              onChange: this.handlePatternChange,
+	              ref: 'pattern',
+	              errorText: errorMessage
 	            }),
 	            _react2.default.createElement('br', null)
 	          ),
-	          _react2.default.createElement(_MatchBox2.default, null),
+	          _react2.default.createElement(_MatchBox2.default, {
+	            pattern: re
+	          }),
 	          _react2.default.createElement('br', null)
 	        )
 	      )
@@ -39376,6 +39403,25 @@
 	var MatchBox = _react2.default.createClass({
 	  displayName: 'MatchBox',
 
+	  propTypes: {
+	    pattern: _react2.default.PropTypes.instanceOf(RegExp).isRequired
+	  },
+
+	  getInitialState: function getInitialState() {
+	    return { matchText: '' };
+	  },
+
+	  handleMatchTextChange: function handleMatchTextChange() {
+	    var value = this.refs.matchText.getValue();
+	    this.setState({ matchText: value });
+	  },
+
+	  renderMatchResult: function renderMatchResult() {
+	    if (this.state.matchText && this.props.pattern) {
+	      var re = this.props.pattern;
+	      return this.state.matchText.match(re);
+	    }
+	  },
 
 	  render: function render() {
 	    return _react2.default.createElement(
@@ -39393,7 +39439,10 @@
 	            _react2.default.createElement(_TextField2.default, {
 	              floatingLabelText: 'Enter Text to Match',
 	              multiLine: true,
-	              rows: 3
+	              rows: 3,
+	              value: this.state.matchText,
+	              onChange: this.handleMatchTextChange,
+	              ref: 'matchText'
 	            })
 	          ),
 	          _react2.default.createElement(
@@ -39404,6 +39453,7 @@
 	              null,
 	              'Matched Result'
 	            ),
+	            this.renderMatchResult(),
 	            _react2.default.createElement(
 	              _Subheader2.default,
 	              null,

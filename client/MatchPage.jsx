@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import TextField from 'material-ui/TextField';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -61,7 +62,9 @@ var MatchPage =  React.createClass({
                 errorText={errorMessage}
               /><br />
             </div>
-            {this.renderMatchBoxes(re)}
+            <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+              {this.renderMatchBoxes(re)}
+            </ReactCSSTransitionGroup>
             <FloatingActionButton
               secondary={true}
               mini={true}
@@ -72,7 +75,6 @@ var MatchPage =  React.createClass({
             </FloatingActionButton>
             {(this.state.numMatchBoxes > 1) ?
               <FloatingActionButton
-                primary={true}
                 mini={true}
                 style={{ float: 'right' }}
                 onClick={this.handleRemoveMatchBox}

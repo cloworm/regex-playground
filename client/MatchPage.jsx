@@ -125,7 +125,6 @@ var MatchPage =  React.createClass({
 
     return (
       <div>
-        <h1>Match Page</h1>
         <div className='row'>
           <div className='col-xs-12 col-md-8'>
             <div className='container-fluid'>

@@ -21871,10 +21871,6 @@
 
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 
-	var _AboutPage = __webpack_require__(395);
-
-	var _AboutPage2 = _interopRequireDefault(_AboutPage);
-
 	var _MatchPage = __webpack_require__(396);
 
 	var _MatchPage2 = _interopRequireDefault(_MatchPage);
@@ -21892,15 +21888,6 @@
 	    this.setState({ currentPage: string });
 	  },
 
-	  renderPage: function renderPage() {
-	    switch (this.state.currentPage) {
-	      case 'match':
-	        return _react2.default.createElement(_MatchPage2.default, null);
-	      case 'about':
-	        return _react2.default.createElement(_AboutPage2.default, null);
-	    }
-	  },
-
 	  render: function render() {
 	    return _react2.default.createElement(
 	      _MuiThemeProvider2.default,
@@ -21912,7 +21899,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'container-fluid' },
-	          this.renderPage()
+	          _react2.default.createElement(_MatchPage2.default, null)
 	        )
 	      )
 	    );
@@ -34943,33 +34930,7 @@
 	exports.default = ActionInfo;
 
 /***/ },
-/* 395 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var AboutPage = _react2.default.createClass({
-	  displayName: 'AboutPage',
-
-
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'h1',
-	      null,
-	      'About Page'
-	    );
-	  }
-	});
-
-	module.exports = AboutPage;
-
-/***/ },
+/* 395 */,
 /* 396 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -35131,11 +35092,6 @@
 	    return _react2.default.createElement(
 	      'div',
 	      null,
-	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Match Page'
-	      ),
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'row' },

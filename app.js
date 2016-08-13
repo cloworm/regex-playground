@@ -8,6 +8,8 @@ var swig = require('swig');
 var morgan = require('morgan');
 var path = require('path');
 
+var port = 3000;
+
 // Template Boilerplate
 app.engine('html', swig.renderFile); // how to render html templates
 app.set('view engine', 'html'); // what file extension do our templates have
@@ -24,6 +26,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', routes);
 
-app.listen(3000);
+app.listen(3000, function() {
+  console.log('Listening on port ' + port);
+});
 
 app.use(express.static(path.join(__dirname, '/public')));

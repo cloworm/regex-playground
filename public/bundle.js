@@ -32432,8 +32432,6 @@
 
 	var _RegexReference2 = _interopRequireDefault(_RegexReference);
 
-	var _colors = __webpack_require__(299);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var examples = [{
@@ -32671,7 +32669,7 @@
 	          this.state.matchBoxValues.length > 1 ? _react2.default.createElement(
 	            _FloatingActionButton2.default,
 	            {
-	              backgroundColor: '#ff',
+	              backgroundColor: '#bdc3c7',
 	              mini: true,
 	              style: styles.actionButton,
 	              onClick: this.handleRemoveMatchBox,

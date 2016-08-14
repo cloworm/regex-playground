@@ -7,8 +7,6 @@ import ContentRemove from 'material-ui/svg-icons/content/remove';
 import RaisedButton from 'material-ui/RaisedButton';
 import MatchBox from './MatchBox.jsx';
 import RegexReference from './RegexReference.jsx';
-import {red500, yellow500, blue500} from 'material-ui/styles/colors';
-
 
 const examples = [
   {
@@ -213,7 +211,7 @@ var MatchPage =  React.createClass({
             </FloatingActionButton>
             {(this.state.matchBoxValues.length > 1) ?
               <FloatingActionButton
-                backgroundColor='#ff'
+                backgroundColor='#bdc3c7'
                 mini={true}
                 style={styles.actionButton}
                 onClick={this.handleRemoveMatchBox}

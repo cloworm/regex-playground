@@ -3,19 +3,28 @@ import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
 import Chip from 'material-ui/Chip';
+import Tooltip from 'rc-tooltip';
+import ReactDOM from 'react-dom';
 
 const style = {
   display: 'inline-block',
   margin: '16px 32px 16px 0',
   width: '100%',
-  chip: {
-      margin: 4,
-      display: 'inline-block'
-  },
   chipContainer: {
-    padding: '0 5px 5px 5px'
-  }
+    padding: '0 5px 5px 5px',
+    display: 'inline-block'
+  },
+  tooltipOverlay: {
+    backgroundColor: '#E0E0E0',
+    width: '150px',
+    height: '50px',
+    borderRadius: '10px',
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
 };
+
 const flags = 'g i m'.split(' ');
 const selectors = '. \\w \\W \\s \\S \\d \\D [abc] [^abc] [a-z]'.split(' ');
 const positions = '^ $'.split(' ');
@@ -25,19 +34,26 @@ const groups = '(abc) $1'.split(' ');
 const counts = '+ * {#,#} ? |'.split(' ');
 
 var RegexReference = React.createClass({
+
   handleTouchTap: function() {
-    alert('You clicked the chip!');
+
   },
 
   renderChip: function(content) {
     return (
-      <Chip
-        key={content}
-        onTouchTap={this.handleTouchTap}
-        style={style.chip}
-      >
-        {content}
-      </Chip>
+      <div style={style.chipContainer} key={content}>
+        <Tooltip
+          placement='top'
+          overlay={<div style={style.tooltipOverlay}>hello this is a tooltip</div>}
+          destroyTooltipOnHide={true}
+        >
+          <Chip
+            onTouchTap={this.handleTouchTap}
+          >
+            {content}
+          </Chip>
+        </Tooltip>
+      </div>
     )
   },
 

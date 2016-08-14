@@ -4,7 +4,6 @@ import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
 import Chip from 'material-ui/Chip';
 import Tooltip from 'rc-tooltip';
-import ReactDOM from 'react-dom';
 
 const style = {
   display: 'inline-block',
@@ -13,15 +12,6 @@ const style = {
   chipContainer: {
     padding: '0 5px 5px 5px',
     display: 'inline-block'
-  },
-  tooltipOverlay: {
-    backgroundColor: '#E0E0E0',
-    width: '150px',
-    height: '50px',
-    borderRadius: '10px',
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column',
   },
 };
 
@@ -44,7 +34,7 @@ var RegexReference = React.createClass({
       <div style={style.chipContainer} key={content}>
         <Tooltip
           placement='top'
-          overlay={<div style={style.tooltipOverlay}>hello this is a tooltip</div>}
+          overlay={<div>hello this is a tooltip</div>}
           destroyTooltipOnHide={true}
         >
           <Chip
@@ -60,6 +50,7 @@ var RegexReference = React.createClass({
   render: function() {
     return (
       <Paper style={style}>
+
         <Subheader>Selectors</Subheader>
         <div style={style.chipContainer}>
           {selectors.map(this.renderChip)}

@@ -37950,10 +37950,6 @@
 
 	var _rcTooltip2 = _interopRequireDefault(_rcTooltip);
 
-	var _reactDom = __webpack_require__(35);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var style = {
@@ -37963,15 +37959,6 @@
 	  chipContainer: {
 	    padding: '0 5px 5px 5px',
 	    display: 'inline-block'
-	  },
-	  tooltipOverlay: {
-	    backgroundColor: '#E0E0E0',
-	    width: '150px',
-	    height: '50px',
-	    borderRadius: '10px',
-	    display: 'flex',
-	    justifyContent: 'center',
-	    flexDirection: 'column'
 	  }
 	};
 
@@ -37999,7 +37986,7 @@
 	          placement: 'top',
 	          overlay: _react2.default.createElement(
 	            'div',
-	            { style: style.tooltipOverlay },
+	            null,
 	            'hello this is a tooltip'
 	          ),
 	          destroyTooltipOnHide: true

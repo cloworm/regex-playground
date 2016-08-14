@@ -7,6 +7,8 @@ import ContentRemove from 'material-ui/svg-icons/content/remove';
 import RaisedButton from 'material-ui/RaisedButton';
 import MatchBox from './MatchBox.jsx';
 import RegexReference from './RegexReference.jsx';
+import {red500, yellow500, blue500} from 'material-ui/styles/colors';
+
 
 const examples = [
   {
@@ -22,7 +24,8 @@ const examples = [
 
 const styles = {
   actionButton: {
-    float: 'right'
+    float: 'right',
+    marginRight: '10px',
   },
   exampleButton: {
     marginBottom: '10px',
@@ -39,6 +42,9 @@ const styles = {
   },
   floatingLabel: {
     color: '#000'
+  },
+  iconFill: {
+    fill:'#000'
   },
   link: {
     fontSize: '.8rem',
@@ -154,7 +160,7 @@ var MatchPage =  React.createClass({
         <div className='row'>
           <div className='col-xs-12 col-md-8'>
             <div className='container-fluid'>
-              <h1 style={styles.title}>RegEx Playground <a href='http://cloworm.github.com' target='_blank' style={styles.link}>BY CLOWORM</a></h1>
+              <h1 style={styles.title}>RegEx Playground <a href='http://github.com/cloworm' target='_blank' style={styles.link}>BY CLOWORM</a></h1>
               <span style={styles.slashWrapper}>
                 <span style={styles.slashLeft}>/</span>
                 <TextField
@@ -182,26 +188,36 @@ var MatchPage =  React.createClass({
                   underlineFocusStyle={styles.underlineFocus}
                 />
               </span>
-              <RaisedButton label='Example' style={styles.exampleButton} onClick={this.handleClickExample} />
+              <RaisedButton
+                label='Example'
+                style={styles.exampleButton}
+                onClick={this.handleClickExample}
+              />
             </div>
             <br />
-            <ReactCSSTransitionGroup transitionName='right-side-fade' transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+            <ReactCSSTransitionGroup
+              transitionName='right-side-fade'
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={300}
+            >
               {this.renderMatchBoxes(re)}
             </ReactCSSTransitionGroup>
             <FloatingActionButton
-              secondary={true}
+              backgroundColor='#fff'
               mini={true}
               style={styles.actionButton}
               onClick={this.handleNewMatchBox}
+              iconStyle={styles.iconFill}
             >
               <ContentAdd />
             </FloatingActionButton>
             {(this.state.matchBoxValues.length > 1) ?
               <FloatingActionButton
-                backgroundColor='#FBC02D'
+                backgroundColor='#ff'
                 mini={true}
                 style={styles.actionButton}
                 onClick={this.handleRemoveMatchBox}
+                iconStyle={styles.iconFill}
               >
                 <ContentRemove />
               </FloatingActionButton> : null

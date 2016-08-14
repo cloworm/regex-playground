@@ -50,7 +50,12 @@ table {
 /*Begin Custom Code*/
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #f1c40f;
+  /*background-color: #f1c40f;*/
+
+  background: #B24592; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #B24592 , #F15F79); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #B24592 , #F15F79); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .right-side-fade-enter {

@@ -5,9 +5,15 @@ import Subheader from 'material-ui/Subheader';
 import MatchItem from './MatchItem.jsx';
 
 const styles = {
+  floatingLabelFocus: {
+    color: '#000'
+  },
   matchResultsMargin: {
     marginBottom: '10px'
-  }
+  },
+  underlineFocus: {
+    borderColor: '#000'
+  },
 }
 
 var MatchBox =  React.createClass({
@@ -62,12 +68,14 @@ var MatchBox =  React.createClass({
             <div className='col-xs-6'>
               <TextField
                 floatingLabelText='Enter Text to Match'
+                floatingLabelFocusStyle={styles.floatingLabelFocus}
                 multiLine={true}
                 fullWidth={true}
                 rows={3}
                 value={this.props.value}
                 onChange={this.handleMatchTextChange}
                 ref='matchText'
+                underlineFocusStyle={styles.underlineFocus}
               />
             </div>
             <div className='col-xs-6'>

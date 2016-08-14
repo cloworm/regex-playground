@@ -37,6 +37,15 @@ const styles = {
     display: 'inline-block',
     position: 'relative'
   },
+  floatingLabel: {
+    color: '#000'
+  },
+  link: {
+    fontSize: '.8rem',
+    color:'#fff',
+    textDecoration: 'none',
+    textShadow: 'none',
+  },
   matchBoxMargin: {
     margin: '15px'
   },
@@ -57,6 +66,19 @@ const styles = {
     display: 'inline-block',
     position: 'relative',
     marginRight: '12px'
+  },
+  title: {
+    color: '#fff',
+    fontSize: '2.2rem',
+    paddingTop: '20px',
+    textShadow:
+      '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
+  },
+  underline: {
+    borderColor: '#000'
+  },
+  underlineFocus: {
+    borderColor: '#fff'
   }
 };
 
@@ -132,25 +154,32 @@ var MatchPage =  React.createClass({
         <div className='row'>
           <div className='col-xs-12 col-md-8'>
             <div className='container-fluid'>
+              <h1 style={styles.title}>RegEx Playground <a href='http://cloworm.github.com' target='_blank' style={styles.link}>BY CLOWORM</a></h1>
               <span style={styles.slashWrapper}>
                 <span style={styles.slashLeft}>/</span>
                 <TextField
                   floatingLabelText='Pattern'
+                  floatingLabelStyle={styles.floatingLabel}
                   value={this.state.pattern}
                   onChange={this.handlePatternChange}
                   style={styles.patternField}
                   ref='pattern'
                   errorText={errorMessage}
+                  underlineStyle={styles.underline}
+                  underlineFocusStyle={styles.underlineFocus}
                 />
                 <span style={styles.slashRight}>/</span>
               </span>
               <span style={styles.flagsFieldSpan}>
                 <TextField
                   floatingLabelText='Flags'
+                  floatingLabelStyle={styles.floatingLabel}
                   value={this.state.flags}
                   onChange={this.handleFlagsChange}
                   style={styles.flagsField}
                   ref='flags'
+                  underlineStyle={styles.underline}
+                  underlineFocusStyle={styles.underlineFocus}
                 />
               </span>
               <RaisedButton label='Example' style={styles.exampleButton} onClick={this.handleClickExample} />
@@ -169,6 +198,7 @@ var MatchPage =  React.createClass({
             </FloatingActionButton>
             {(this.state.matchBoxValues.length > 1) ?
               <FloatingActionButton
+                backgroundColor='#FBC02D'
                 mini={true}
                 style={styles.actionButton}
                 onClick={this.handleRemoveMatchBox}

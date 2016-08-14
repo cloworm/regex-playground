@@ -21895,7 +21895,6 @@
 	      _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_Navbar2.default, { onNavigate: this.handleNavigate }),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'container-fluid' },
@@ -21907,6 +21906,8 @@
 	});
 
 	module.exports = App;
+
+	// <Navbar onNavigate={this.handleNavigate} />
 
 /***/ },
 /* 182 */
@@ -31662,12 +31663,6 @@
 	    this.setState({ value: value });
 	  },
 
-	  // handleTitleTap: function() {
-	  //   return (
-	  //     this.props.onNavigate.bind(null, 'match')
-	  //   )
-	  // },
-
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
@@ -31675,40 +31670,33 @@
 	      _react2.default.createElement(_AppBar2.default, {
 	        title: 'RegEx Playground',
 	        zDepth: 0,
+	        style: { backgroundColor: '#f1c40f', marginBottom: '5px' },
+	        titleStyle: { fontSize: '35px', paddingLeft: '40px', textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000' },
 	        showMenuIconButton: false,
-	        onTitleTouchTap: this.props.onNavigate.bind(null, 'match'),
-	        iconElementRight: _react2.default.createElement(
-	          _IconButton2.default,
-	          {
-	            onTouchTap: this.handleDialogOpen,
-	            label: 'Dialog'
-	          },
-	          _react2.default.createElement(
-	            _Dialog2.default,
-	            {
-	              title: 'About',
-	              modal: false,
-	              open: this.state.open,
-	              onRequestClose: this.handleDialogClose
-	            },
-	            'Made by ',
-	            _react2.default.createElement(
-	              'a',
-	              { href: 'http://github.com/cloworm', target: '_blank' },
-	              'Chloe Echikson'
-	            )
-	          ),
-	          _react2.default.createElement(_info2.default, null)
-	        )
+	        onTitleTouchTap: this.props.onNavigate.bind(null, 'match')
+	        // iconElementRight={
+	        //   <IconButton
+	        //     onTouchTap={this.handleDialogOpen}
+	        //     label='Dialog'
+	        //     touch={true}
+	        //   >
+	        //     <Dialog
+	        //       title='About'
+	        //       modal={false}
+	        //       open={this.state.open}
+	        //       onRequestClose={this.handleDialogClose}
+	        //     >
+	        //       Made by <a href='http://github.com/cloworm' target='_blank'>Chloe Echikson</a>
+	        //     </Dialog>
+	        //     <Info color='#FFF' zDepth={1}/>
+	        //   </IconButton>
+	        // }
 	      })
 	    );
 	  }
 	});
 
 	module.exports = Navbar;
-
-	// <RaisedButton label="About" primary={true} onClick={this.props.onNavigate.bind(null, 'about')}/>
-	// <RaisedButton label="Match" secondary={true} onClick={this.props.onNavigate.bind(null, 'match')} />
 
 /***/ },
 /* 366 */
@@ -35000,6 +34988,15 @@
 	    display: 'inline-block',
 	    position: 'relative'
 	  },
+	  floatingLabel: {
+	    color: '#000'
+	  },
+	  link: {
+	    fontSize: '.8rem',
+	    color: '#fff',
+	    textDecoration: 'none',
+	    textShadow: 'none'
+	  },
 	  matchBoxMargin: {
 	    margin: '15px'
 	  },
@@ -35020,6 +35017,18 @@
 	    display: 'inline-block',
 	    position: 'relative',
 	    marginRight: '12px'
+	  },
+	  title: {
+	    color: '#fff',
+	    fontSize: '2.2rem',
+	    paddingTop: '20px',
+	    textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
+	  },
+	  underline: {
+	    borderColor: '#000'
+	  },
+	  underlineFocus: {
+	    borderColor: '#fff'
 	  }
 	};
 
@@ -35105,6 +35114,16 @@
 	            'div',
 	            { className: 'container-fluid' },
 	            _react2.default.createElement(
+	              'h1',
+	              { style: styles.title },
+	              'RegEx Playground ',
+	              _react2.default.createElement(
+	                'a',
+	                { href: 'http://cloworm.github.com', target: '_blank', style: styles.link },
+	                'BY CLOWORM'
+	              )
+	            ),
+	            _react2.default.createElement(
 	              'span',
 	              { style: styles.slashWrapper },
 	              _react2.default.createElement(
@@ -35114,11 +35133,14 @@
 	              ),
 	              _react2.default.createElement(_TextField2.default, {
 	                floatingLabelText: 'Pattern',
+	                floatingLabelStyle: styles.floatingLabel,
 	                value: this.state.pattern,
 	                onChange: this.handlePatternChange,
 	                style: styles.patternField,
 	                ref: 'pattern',
-	                errorText: errorMessage
+	                errorText: errorMessage,
+	                underlineStyle: styles.underline,
+	                underlineFocusStyle: styles.underlineFocus
 	              }),
 	              _react2.default.createElement(
 	                'span',
@@ -35131,10 +35153,13 @@
 	              { style: styles.flagsFieldSpan },
 	              _react2.default.createElement(_TextField2.default, {
 	                floatingLabelText: 'Flags',
+	                floatingLabelStyle: styles.floatingLabel,
 	                value: this.state.flags,
 	                onChange: this.handleFlagsChange,
 	                style: styles.flagsField,
-	                ref: 'flags'
+	                ref: 'flags',
+	                underlineStyle: styles.underline,
+	                underlineFocusStyle: styles.underlineFocus
 	              })
 	            ),
 	            _react2.default.createElement(_RaisedButton2.default, { label: 'Example', style: styles.exampleButton, onClick: this.handleClickExample })
@@ -35158,6 +35183,7 @@
 	          this.state.matchBoxValues.length > 1 ? _react2.default.createElement(
 	            _FloatingActionButton2.default,
 	            {
+	              backgroundColor: '#FBC02D',
 	              mini: true,
 	              style: styles.actionButton,
 	              onClick: this.handleRemoveMatchBox
@@ -37290,8 +37316,14 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var styles = {
+	  floatingLabelFocus: {
+	    color: '#000'
+	  },
 	  matchResultsMargin: {
 	    marginBottom: '10px'
+	  },
+	  underlineFocus: {
+	    borderColor: '#000'
 	  }
 	};
 
@@ -37354,12 +37386,14 @@
 	            { className: 'col-xs-6' },
 	            _react2.default.createElement(_TextField2.default, {
 	              floatingLabelText: 'Enter Text to Match',
+	              floatingLabelFocusStyle: styles.floatingLabelFocus,
 	              multiLine: true,
 	              fullWidth: true,
 	              rows: 3,
 	              value: this.props.value,
 	              onChange: this.handleMatchTextChange,
-	              ref: 'matchText'
+	              ref: 'matchText',
+	              underlineFocusStyle: styles.underlineFocus
 	            })
 	          ),
 	          _react2.default.createElement(

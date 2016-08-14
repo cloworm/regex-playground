@@ -50,6 +50,7 @@ table {
 /*Begin Custom Code*/
 body {
   font-family: 'Roboto', sans-serif;
+  background-color: #f1c40f;
 }
 
 .right-side-fade-enter {

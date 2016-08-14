@@ -5,6 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import Info from 'material-ui/svg-icons/action/info'
 
+
 var Navbar =  React.createClass({
 
   propTypes: {
@@ -30,36 +31,33 @@ var Navbar =  React.createClass({
     this.setState({value});
   },
 
-  // handleTitleTap: function() {
-  //   return (
-  //     this.props.onNavigate.bind(null, 'match')
-  //   )
-  // },
-
   render: function() {
     return (
       <div>
         <AppBar
           title='RegEx Playground'
           zDepth={0}
+          style={{backgroundColor: '#f1c40f', marginBottom: '5px'}}
+          titleStyle={{fontSize: '35px', paddingLeft: '40px', textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'}}
           showMenuIconButton={false}
           onTitleTouchTap={this.props.onNavigate.bind(null, 'match')}
-          iconElementRight={
-            <IconButton
-              onTouchTap={this.handleDialogOpen}
-              label='Dialog'
-            >
-            <Dialog
-              title='About'
-              modal={false}
-              open={this.state.open}
-              onRequestClose={this.handleDialogClose}
-            >
-              Made by <a href='http://github.com/cloworm' target='_blank'>Chloe Echikson</a>
-            </Dialog>
-              <Info />
-            </IconButton>
-          }
+          // iconElementRight={
+          //   <IconButton
+          //     onTouchTap={this.handleDialogOpen}
+          //     label='Dialog'
+          //     touch={true}
+          //   >
+          //     <Dialog
+          //       title='About'
+          //       modal={false}
+          //       open={this.state.open}
+          //       onRequestClose={this.handleDialogClose}
+          //     >
+          //       Made by <a href='http://github.com/cloworm' target='_blank'>Chloe Echikson</a>
+          //     </Dialog>
+          //     <Info color='#FFF' zDepth={1}/>
+          //   </IconButton>
+          // }
         />
       </div>
     );
@@ -67,6 +65,3 @@ var Navbar =  React.createClass({
 })
 
 module.exports = Navbar;
-
-        // <RaisedButton label="About" primary={true} onClick={this.props.onNavigate.bind(null, 'about')}/>
-        // <RaisedButton label="Match" secondary={true} onClick={this.props.onNavigate.bind(null, 'match')} />

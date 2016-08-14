@@ -20,7 +20,7 @@ var App = React.createClass({
     return (
       <MuiThemeProvider>
         <div>
-          <Navbar onNavigate={this.handleNavigate} />
+
           <div className='container-fluid'>
             <MatchPage />
           </div>
@@ -31,3 +31,5 @@ var App = React.createClass({
 })
 
 module.exports = App;
+
+// <Navbar onNavigate={this.handleNavigate} />

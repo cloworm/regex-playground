@@ -15,13 +15,66 @@ const style = {
   },
 };
 
-const flags = 'g i m'.split(' ');
-const selectors = '. \\w \\W \\s \\S \\d \\D [abc] [^abc] [a-z]'.split(' ');
-const positions = '^ $'.split(' ');
-const escapes = '. \\ + * ? ^ $ [ ] { } ( ) | /'.split(' ');
-const specials = '\\t \\n \\r'.split(' ');
-const groups = '(abc) $1'.split(' ');
-const counts = '+ * {#,#} ? |'.split(' ');
+const flags = [
+  {name: 'g', tip: 'Global'},
+  {name: 'i', tip: 'Case insensitive'},
+  {name: 'm', tip: 'Multiline'},
+];
+
+const selectors = [
+  {name: '.', tip: 'Any character'},
+  {name: '\\w', tip: 'Any word character'},
+  {name: '\\W', tip: 'Any non-word character'},
+  {name: '\\s', tip: 'Any whitespace character'},
+  {name: '\\S', tip: 'Any non-whitespace character'},
+  {name: '\\d', tip: 'Any digit character'},
+  {name: '\\D', tip: 'Any non-digit character'},
+  {name: '[abc]', tip: 'Any character in the brackets'},
+  {name: '[^abc]', tip: 'Any character not in the brackets'},
+  {name: '[a-z]', tip: 'Any character in the range'},
+];
+
+const positions = [
+  {name: '^', tip: 'Beginning of string'},
+  {name: '$', tip: 'End of string'},
+];
+
+const escapes = [
+  {name: '.', tip: '\\.'},
+  {name: '\\', tip: '\\\\'},
+  {name: '+', tip: '\\+'},
+  {name: '*', tip: '\\*'},
+  {name: '?', tip: '\\?'},
+  {name: '^', tip: '\\^'},
+  {name: '$', tip: '\\$'},
+  {name: '[', tip: '\\['},
+  {name: ']', tip: '\\]'},
+  {name: '{', tip: '\\{'},
+  {name: '}', tip: '\\}'},
+  {name: '(', tip: '\\('},
+  {name: ')', tip: '\\)'},
+  {name: '|', tip: '\\|'},
+  {name: '/', tip: '\\/'},
+];
+
+const specials = [
+  {name: '\\t', tip: 'Tab character'},
+  {name: '\\n', tip: 'New line character'},
+  {name: '\\r', tip: 'Line return character'},
+];
+
+const groups = [
+  {name: '(abc)', tip: 'Match group for whatever is between ( )'},
+  {name: '$number', tip: 'Select a specific match group'},
+];
+
+const counts = [
+  {name: '+', tip: 'At least one'},
+  {name: '*', tip: 'Zero or more'},
+  {name: '{min, max}', tip: 'At least min number, at most max number'},
+  {name: '?', tip: 'Zero or one'},
+  {name: '|', tip: 'Or operator'},
+];
 
 var RegexReference = React.createClass({
 
@@ -29,18 +82,18 @@ var RegexReference = React.createClass({
 
   },
 
-  renderChip: function(content) {
+  renderChip: function(obj) {
     return (
-      <div style={style.chipContainer} key={content}>
+      <div style={style.chipContainer} key={obj.name}>
         <Tooltip
           placement='top'
-          overlay={<div>hello this is a tooltip</div>}
+          overlay={<div>{obj.tip}</div>}
           destroyTooltipOnHide={true}
         >
           <Chip
             onTouchTap={this.handleTouchTap}
           >
-            {content}
+            {obj.name}
           </Chip>
         </Tooltip>
       </div>

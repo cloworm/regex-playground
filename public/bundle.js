@@ -37962,13 +37962,19 @@
 	  }
 	};
 
-	var flags = 'g i m'.split(' ');
-	var selectors = '. \\w \\W \\s \\S \\d \\D [abc] [^abc] [a-z]'.split(' ');
-	var positions = '^ $'.split(' ');
-	var escapes = '. \\ + * ? ^ $ [ ] { } ( ) | /'.split(' ');
-	var specials = '\\t \\n \\r'.split(' ');
-	var groups = '(abc) $1'.split(' ');
-	var counts = '+ * {#,#} ? |'.split(' ');
+	var flags = [{ name: 'g', tip: 'Global' }, { name: 'i', tip: 'Case insensitive' }, { name: 'm', tip: 'Multiline' }];
+
+	var selectors = [{ name: '.', tip: 'Any character' }, { name: '\\w', tip: 'Any word character' }, { name: '\\W', tip: 'Any non-word character' }, { name: '\\s', tip: 'Any whitespace character' }, { name: '\\S', tip: 'Any non-whitespace character' }, { name: '\\d', tip: 'Any digit character' }, { name: '\\D', tip: 'Any non-digit character' }, { name: '[abc]', tip: 'Any character in the brackets' }, { name: '[^abc]', tip: 'Any character not in the brackets' }, { name: '[a-z]', tip: 'Any character in the range' }];
+
+	var positions = [{ name: '^', tip: 'Beginning of string' }, { name: '$', tip: 'End of string' }];
+
+	var escapes = [{ name: '.', tip: '\\.' }, { name: '\\', tip: '\\\\' }, { name: '+', tip: '\\+' }, { name: '*', tip: '\\*' }, { name: '?', tip: '\\?' }, { name: '^', tip: '\\^' }, { name: '$', tip: '\\$' }, { name: '[', tip: '\\[' }, { name: ']', tip: '\\]' }, { name: '{', tip: '\\{' }, { name: '}', tip: '\\}' }, { name: '(', tip: '\\(' }, { name: ')', tip: '\\)' }, { name: '|', tip: '\\|' }, { name: '/', tip: '\\/' }];
+
+	var specials = [{ name: '\\t', tip: 'Tab character' }, { name: '\\n', tip: 'New line character' }, { name: '\\r', tip: 'Line return character' }];
+
+	var groups = [{ name: '(abc)', tip: 'Match group for whatever is between ( )' }, { name: '$number', tip: 'Select a specific match group' }];
+
+	var counts = [{ name: '+', tip: 'At least one' }, { name: '*', tip: 'Zero or more' }, { name: '{min, max}', tip: 'At least min number, at most max number' }, { name: '?', tip: 'Zero or one' }, { name: '|', tip: 'Or operator' }];
 
 	var RegexReference = _react2.default.createClass({
 	  displayName: 'RegexReference',
@@ -37976,10 +37982,10 @@
 
 	  handleTouchTap: function handleTouchTap() {},
 
-	  renderChip: function renderChip(content) {
+	  renderChip: function renderChip(obj) {
 	    return _react2.default.createElement(
 	      'div',
-	      { style: style.chipContainer, key: content },
+	      { style: style.chipContainer, key: obj.name },
 	      _react2.default.createElement(
 	        _rcTooltip2.default,
 	        {
@@ -37987,7 +37993,7 @@
 	          overlay: _react2.default.createElement(
 	            'div',
 	            null,
-	            'hello this is a tooltip'
+	            obj.tip
 	          ),
 	          destroyTooltipOnHide: true
 	        },
@@ -37996,7 +38002,7 @@
 	          {
 	            onTouchTap: this.handleTouchTap
 	          },
-	          content
+	          obj.name
 	        )
 	      )
 	    );

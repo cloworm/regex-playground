@@ -17,63 +17,62 @@ const style = {
 
 const flags = [
   {name: 'g', tip: 'Global', example: {pattern: 'a', flags: 'g', matchBoxValues: ['banana']}},
-  {name: 'i', tip: 'Case insensitive'},
-  {name: 'm', tip: 'Multiline'},
+  {name: 'i', tip: 'Case insensitive', example: {pattern: 'aBcDe', flags: 'i', matchBoxValues: ['abCDE']}},
 ];
 
 const selectors = [
-  {name: '.', tip: 'Any character'},
-  {name: '\\w', tip: 'Any word character'},
-  {name: '\\W', tip: 'Any non-word character'},
-  {name: '\\s', tip: 'Any whitespace character'},
-  {name: '\\S', tip: 'Any non-whitespace character'},
-  {name: '\\d', tip: 'Any digit character'},
-  {name: '\\D', tip: 'Any non-digit character'},
-  {name: '[abc]', tip: 'Any character in the brackets'},
-  {name: '[^abc]', tip: 'Any character not in the brackets'},
-  {name: '[a-z]', tip: 'Any character in the range'},
+  {name: '.', tip: 'Any character', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '\\w', tip: 'Any word character', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '\\W', tip: 'Any non-word character', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '\\s', tip: 'Any whitespace character', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '\\S', tip: 'Any non-whitespace character', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '\\d', tip: 'Any digit character', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '\\D', tip: 'Any non-digit character', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '[abc]', tip: 'Any character in the brackets', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '[^abc]', tip: 'Any character not in the brackets', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '[a-z]', tip: 'Any character in the range', example: {pattern: '', flags: '', matchBoxValues: ['']}},
 ];
 
 const positions = [
-  {name: '^', tip: 'Beginning of string'},
-  {name: '$', tip: 'End of string'},
+  {name: '^', tip: 'Beginning of string', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '$', tip: 'End of string', example: {pattern: '', flags: '', matchBoxValues: ['']}},
 ];
 
 const escapes = [
-  {name: '.', tip: '\\.'},
-  {name: '\\', tip: '\\\\'},
-  {name: '+', tip: '\\+'},
-  {name: '*', tip: '\\*'},
-  {name: '?', tip: '\\?'},
-  {name: '^', tip: '\\^'},
-  {name: '$', tip: '\\$'},
-  {name: '[', tip: '\\['},
-  {name: ']', tip: '\\]'},
-  {name: '{', tip: '\\{'},
-  {name: '}', tip: '\\}'},
-  {name: '(', tip: '\\('},
-  {name: ')', tip: '\\)'},
-  {name: '|', tip: '\\|'},
-  {name: '/', tip: '\\/'},
+  {name: '.', tip: '\\.', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '\\', tip: '\\\\', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '+', tip: '\\+', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '*', tip: '\\*', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '?', tip: '\\?', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '^', tip: '\\^', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '$', tip: '\\$', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '[', tip: '\\[', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: ']', tip: '\\]', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '{', tip: '\\{', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '}', tip: '\\}', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '(', tip: '\\(', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: ')', tip: '\\)', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '|', tip: '\\|', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '/', tip: '\\/', example: {pattern: '', flags: '', matchBoxValues: ['']}},
 ];
 
 const specials = [
-  {name: '\\t', tip: 'Tab character'},
-  {name: '\\n', tip: 'New line character'},
-  {name: '\\r', tip: 'Line return character'},
+  {name: '\\t', tip: 'Tab character', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '\\n', tip: 'New line character', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '\\r', tip: 'Line return character', example: {pattern: '', flags: '', matchBoxValues: ['']}},
 ];
 
 const groups = [
-  {name: '(abc)', tip: 'Match group for whatever is between ( )'},
-  {name: '$number', tip: 'Select a specific match group'},
+  {name: '(abc)', tip: 'Match group for whatever is between ( )', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '$number', tip: 'Select a specific match group', example: {pattern: '', flags: '', matchBoxValues: ['']}},
 ];
 
 const counts = [
-  {name: '+', tip: 'At least one'},
-  {name: '*', tip: 'Zero or more'},
-  {name: '{min, max}', tip: 'At least min number, at most max number'},
-  {name: '?', tip: 'Zero or one'},
-  {name: '|', tip: 'Or operator'},
+  {name: '+', tip: 'At least one', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '*', tip: 'Zero or more', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '{min, max}', tip: 'At least min number, at most max number', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '?', tip: 'Zero or one', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '|', tip: 'Or operator', example: {pattern: '', flags: '', matchBoxValues: ['']}},
 ];
 
 var RegexReference = React.createClass({

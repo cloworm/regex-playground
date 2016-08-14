@@ -6,7 +6,7 @@ const styles = {
     margin: 4,
   },
   wrapper: {
-    display: 'flex',
+    display: 'inline-flex',
     flexWrap: 'wrap',
   },
 };

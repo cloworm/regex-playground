@@ -21,21 +21,21 @@ const flags = [
 ];
 
 const selectors = [
-  {name: '.', tip: 'Any character', example: {pattern: '', flags: '', matchBoxValues: ['']}},
-  {name: '\\w', tip: 'Any word character', example: {pattern: '', flags: '', matchBoxValues: ['']}},
-  {name: '\\W', tip: 'Any non-word character', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '.', tip: 'Any character', example: {pattern: '...-...', flags: '', matchBoxValues: ['abc-def-ghi-jkl']}},
+  {name: '\\w', tip: 'Any word character', example: {pattern: '\\w+', flags: 'g', matchBoxValues: ['A8-3/49_B?']}},
+  {name: '\\W', tip: 'Any non-word character', example: {pattern: '\\W+', flags: 'g', matchBoxValues: ['A8-3/49_B?']}},
   {name: '\\s', tip: 'Any whitespace character', example: {pattern: '', flags: '', matchBoxValues: ['']}},
-  {name: '\\S', tip: 'Any non-whitespace character', example: {pattern: '', flags: '', matchBoxValues: ['']}},
-  {name: '\\d', tip: 'Any digit character', example: {pattern: '', flags: '', matchBoxValues: ['']}},
-  {name: '\\D', tip: 'Any non-digit character', example: {pattern: '', flags: '', matchBoxValues: ['']}},
-  {name: '[abc]', tip: 'Any character in the brackets', example: {pattern: '', flags: '', matchBoxValues: ['']}},
-  {name: '[^abc]', tip: 'Any character not in the brackets', example: {pattern: '', flags: '', matchBoxValues: ['']}},
-  {name: '[a-z]', tip: 'Any character in the range', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '\\S', tip: 'Any non-whitespace character', example: {pattern: '\\S+', flags: 'g', matchBoxValues: ['foo bar\nbaz']}},
+  {name: '\\d', tip: 'Any digit character', example: {pattern: '\\d+', flags: 'g', matchBoxValues: ['867-5309']}},
+  {name: '\\D', tip: 'Any non-digit character', example: {pattern: '\\D', flags: '', matchBoxValues: ['867-5309']}},
+  {name: '[abc]', tip: 'Any character in the brackets', example: {pattern: '[aeiou]', flags: 'g', matchBoxValues: ['quick brown fox']}},
+  {name: '[^abc]', tip: 'Any character not in the brackets', example: {pattern: '[^aeiou ]', flags: 'g', matchBoxValues: ['quick brown fox']}},
+  {name: '[a-z]', tip: 'Any character in the range', example: {pattern: '[a-m]', flags: 'g', matchBoxValues: ['quick brown fox']}},
 ];
 
 const positions = [
-  {name: '^', tip: 'Beginning of string', example: {pattern: '', flags: '', matchBoxValues: ['']}},
-  {name: '$', tip: 'End of string', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '^', tip: 'Beginning of string', example: {pattern: '^\\w+', flags: 'g', matchBoxValues: ['abc-def-ghi-jkl']}},
+  {name: '$', tip: 'End of string', example: {pattern: '\\w+$', flags: 'g', matchBoxValues: ['abc-def-ghi-jkl']}},
 ];
 
 const escapes = [
@@ -63,16 +63,16 @@ const specials = [
 ];
 
 const groups = [
-  {name: '(abc)', tip: 'Match group for whatever is between ( )', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '(abc)', tip: 'Match group for whatever is between ( )', example: {pattern: '(https?)://(.+)', flags: '', matchBoxValues: ['http://example.com', 'https://example.com']}},
   {name: '$number', tip: 'Select a specific match group', example: {pattern: '', flags: '', matchBoxValues: ['']}},
 ];
 
 const counts = [
-  {name: '+', tip: 'At least one', example: {pattern: '', flags: '', matchBoxValues: ['']}},
-  {name: '*', tip: 'Zero or more', example: {pattern: '', flags: '', matchBoxValues: ['']}},
-  {name: '{min, max}', tip: 'At least min number, at most max number', example: {pattern: '', flags: '', matchBoxValues: ['']}},
-  {name: '?', tip: 'Zero or one', example: {pattern: '', flags: '', matchBoxValues: ['']}},
-  {name: '|', tip: 'Or operator', example: {pattern: '', flags: '', matchBoxValues: ['']}},
+  {name: '+', tip: 'One or more', example: {pattern: '\\w+', flags: 'g', matchBoxValues: ['a ab abc abcd']}},
+  {name: '*', tip: 'Zero or more', example: {pattern: 'http://.*', flags: '', matchBoxValues: ['http://example.com']}},
+  {name: '{min, max}', tip: 'At least min number, at most max number', example: {pattern: '\\w{2,4}', flags: 'g', matchBoxValues: ['a ab abc abcd abcde']}},
+  {name: '?', tip: 'Zero or one', example: {pattern: 'https?', flags: '', matchBoxValues: ['http://example.com', 'https://example.com']}},
+  {name: '|', tip: 'Or operator', example: {pattern: '(https|http)', flags: '', matchBoxValues: ['http://example.com', 'https://example.com']}},
 ];
 
 var RegexReference = React.createClass({

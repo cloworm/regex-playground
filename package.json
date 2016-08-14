@@ -2,7 +2,7 @@
   "name": "Express-React-Material-UI-Boilerplate",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "author": "Chloe Echikson",
   "license": "ISC",
   "scripts": {

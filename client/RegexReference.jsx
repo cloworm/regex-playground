@@ -16,7 +16,7 @@ const style = {
 };
 
 const flags = [
-  {name: 'g', tip: 'Global'},
+  {name: 'g', tip: 'Global', example: {pattern: 'a', flags: 'g', matchBoxValues: ['banana']}},
   {name: 'i', tip: 'Case insensitive'},
   {name: 'm', tip: 'Multiline'},
 ];
@@ -78,8 +78,8 @@ const counts = [
 
 var RegexReference = React.createClass({
 
-  handleTouchTap: function() {
-
+  handleTouchTap: function(obj) {
+    this.props.onClickChip(obj);
   },
 
   renderChip: function(obj) {
@@ -91,7 +91,7 @@ var RegexReference = React.createClass({
           destroyTooltipOnHide={true}
         >
           <Chip
-            onTouchTap={this.handleTouchTap}
+            onTouchTap={this.handleTouchTap.bind(null, obj)}
           >
             {obj.name}
           </Chip>

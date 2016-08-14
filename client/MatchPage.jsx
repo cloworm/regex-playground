@@ -99,6 +99,10 @@ var MatchPage =  React.createClass({
     this.setState({ matchBoxValues: this.state.matchBoxValues });
   },
 
+  handleClickChip: function(obj) {
+    this.setState(obj.example);
+  },
+
   renderMatchBoxes: function(re) {
     return this.state.matchBoxValues.map(function(value, i) {
       return (
@@ -174,7 +178,9 @@ var MatchPage =  React.createClass({
             }
           </div>
           <div className='col-xs-12 col-md-4'>
-            <RegexReference />
+            <RegexReference
+              onClickChip={this.handleClickChip}
+            />
           </div>
         </div>
       </div>

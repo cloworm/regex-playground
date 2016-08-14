@@ -35064,6 +35064,10 @@
 	    this.setState({ matchBoxValues: this.state.matchBoxValues });
 	  },
 
+	  handleClickChip: function handleClickChip(obj) {
+	    this.setState(obj.example);
+	  },
+
 	  renderMatchBoxes: function renderMatchBoxes(re) {
 	    return this.state.matchBoxValues.map(function (value, i) {
 	      return _react2.default.createElement(
@@ -35164,7 +35168,9 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'col-xs-12 col-md-4' },
-	          _react2.default.createElement(_RegexReference2.default, null)
+	          _react2.default.createElement(_RegexReference2.default, {
+	            onClickChip: this.handleClickChip
+	          })
 	        )
 	      )
 	    );
@@ -37962,7 +37968,7 @@
 	  }
 	};
 
-	var flags = [{ name: 'g', tip: 'Global' }, { name: 'i', tip: 'Case insensitive' }, { name: 'm', tip: 'Multiline' }];
+	var flags = [{ name: 'g', tip: 'Global', example: { pattern: 'a', flags: 'g', matchBoxValues: ['banana'] } }, { name: 'i', tip: 'Case insensitive' }, { name: 'm', tip: 'Multiline' }];
 
 	var selectors = [{ name: '.', tip: 'Any character' }, { name: '\\w', tip: 'Any word character' }, { name: '\\W', tip: 'Any non-word character' }, { name: '\\s', tip: 'Any whitespace character' }, { name: '\\S', tip: 'Any non-whitespace character' }, { name: '\\d', tip: 'Any digit character' }, { name: '\\D', tip: 'Any non-digit character' }, { name: '[abc]', tip: 'Any character in the brackets' }, { name: '[^abc]', tip: 'Any character not in the brackets' }, { name: '[a-z]', tip: 'Any character in the range' }];
 
@@ -37980,7 +37986,9 @@
 	  displayName: 'RegexReference',
 
 
-	  handleTouchTap: function handleTouchTap() {},
+	  handleTouchTap: function handleTouchTap(obj) {
+	    this.props.onClickChip(obj);
+	  },
 
 	  renderChip: function renderChip(obj) {
 	    return _react2.default.createElement(
@@ -38000,7 +38008,7 @@
 	        _react2.default.createElement(
 	          _Chip2.default,
 	          {
-	            onTouchTap: this.handleTouchTap
+	            onTouchTap: this.handleTouchTap.bind(null, obj)
 	          },
 	          obj.name
 	        )

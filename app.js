@@ -8,7 +8,7 @@ var swig = require('swig');
 var morgan = require('morgan');
 var path = require('path');
 
-var port = 3000;
+var port = process.env.PORT || 3000;
 
 // Template Boilerplate
 app.engine('html', swig.renderFile); // how to render html templates
@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', routes);
 
-app.listen(3000, function() {
+app.listen(port, function() {
   console.log('Listening on port ' + port);
 });
 

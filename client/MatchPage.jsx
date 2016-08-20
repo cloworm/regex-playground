@@ -8,24 +8,12 @@ import RaisedButton from 'material-ui/RaisedButton';
 import MatchBox from './MatchBox.jsx';
 import RegexReference from './RegexReference.jsx';
 
-const examples = [
-  {
-    pattern: "\\((\\d{3})\\) (\\d{3})-(\\d{4})",
-    flags: '',
-    matchBoxValues: ['(908) 555-1212', '(213) 555-6789']
-  }, {
-    pattern: 'a',
-    flags: 'gi',
-    matchBoxValues: ['banana']
-  }
-];
-
 const styles = {
   actionButton: {
     float: 'right',
     marginRight: '10px',
   },
-  exampleButton: {
+  clearButton: {
     marginBottom: '10px',
     verticalAlign: 'bottom'
   },
@@ -96,9 +84,12 @@ var MatchPage =  React.createClass({
     };
   },
 
-  handleClickExample: function() {
-    var example = examples[parseInt(Math.random() * examples.length)];
-    this.setState(example);
+  handleClickClear: function() {
+    this.setState({
+      pattern: '',
+      flags: '',
+      matchBoxValues: ['']
+    });
   },
 
   handlePatternChange: function() {
@@ -198,9 +189,9 @@ var MatchPage =  React.createClass({
                 </div>
                 <div className='col-sm-2 col-xs-12'>
                   <RaisedButton
-                    label='Example'
-                    style={styles.exampleButton}
-                    onClick={this.handleClickExample}
+                    label='Clear'
+                    style={styles.clearButton}
+                    onClick={this.handleClickClear}
                   />
                 </div>
               </div>

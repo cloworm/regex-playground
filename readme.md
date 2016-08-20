@@ -41,3 +41,7 @@ You can alter these processes in your `package.json` file. The following is the 
 },
 ...
 ```
+
+### Technologies Used
+- [Flexbox Grid](http://flexboxgrid.com/)
+- [Material-UI](http://www.material-ui.com/#/)

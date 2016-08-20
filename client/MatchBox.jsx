@@ -6,7 +6,7 @@ import MatchItem from './MatchItem.jsx';
 
 const styles = {
   floatingLabelFocus: {
-    color: '#000'
+    color: '#000',
   },
   matchResultsMargin: {
     marginBottom: '10px'
@@ -65,10 +65,13 @@ var MatchBox =  React.createClass({
       <Paper>
         <div className='container-fluid'>
           <div className='row'>
-            <div className='col-xs-6'>
+            <div className='col-md-6 col-xs-12'>
               <TextField
+                autoCapitalize='off'
+                autoCorrect='off'
                 floatingLabelText='Enter Text to Match'
                 floatingLabelFocusStyle={styles.floatingLabelFocus}
+                floatingLabelFixed={true}
                 multiLine={true}
                 fullWidth={true}
                 rows={3}
@@ -78,7 +81,7 @@ var MatchBox =  React.createClass({
                 underlineFocusStyle={styles.underlineFocus}
               />
             </div>
-            <div className='col-xs-6'>
+            <div className='col-md-6 col-xs-12'>
               <div style={styles.matchResultsMargin}>
                 <Subheader>Matched Result</Subheader>
                 {this.renderMatchResult()}

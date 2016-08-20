@@ -27,12 +27,11 @@ const styles = {
   },
   exampleButton: {
     marginBottom: '10px',
-    marginLeft: '30px',
     verticalAlign: 'bottom'
   },
   flagsField: {
     float: 'left',
-    width: '50px'
+    width: '100%'
   },
   flagsFieldSpan: {
     display: 'inline-block',
@@ -54,7 +53,8 @@ const styles = {
     margin: '15px'
   },
   patternField: {
-    float: 'left'
+    float: 'left',
+    width: '100%'
   },
   slashLeft: {
     position: 'absolute',
@@ -69,7 +69,8 @@ const styles = {
   slashWrapper: {
     display: 'inline-block',
     position: 'relative',
-    marginRight: '12px'
+    marginRight: '12px',
+    width: '100%'
   },
   title: {
     color: '#fff',
@@ -159,38 +160,50 @@ var MatchPage =  React.createClass({
           <div className='col-xs-12 col-md-8'>
             <div className='container-fluid'>
               <h1 style={styles.title}>RegEx Playground <a href='http://github.com/cloworm' target='_blank' style={styles.link}>BY CLOWORM</a></h1>
-              <span style={styles.slashWrapper}>
-                <span style={styles.slashLeft}>/</span>
-                <TextField
-                  floatingLabelText='Pattern'
-                  floatingLabelStyle={styles.floatingLabel}
-                  value={this.state.pattern}
-                  onChange={this.handlePatternChange}
-                  style={styles.patternField}
-                  ref='pattern'
-                  errorText={errorMessage}
-                  underlineStyle={styles.underline}
-                  underlineFocusStyle={styles.underlineFocus}
-                />
-                <span style={styles.slashRight}>/</span>
-              </span>
-              <span style={styles.flagsFieldSpan}>
-                <TextField
-                  floatingLabelText='Flags'
-                  floatingLabelStyle={styles.floatingLabel}
-                  value={this.state.flags}
-                  onChange={this.handleFlagsChange}
-                  style={styles.flagsField}
-                  ref='flags'
-                  underlineStyle={styles.underline}
-                  underlineFocusStyle={styles.underlineFocus}
-                />
-              </span>
-              <RaisedButton
-                label='Example'
-                style={styles.exampleButton}
-                onClick={this.handleClickExample}
-              />
+              <div className='row bottom-xs'>
+                <div className='col-xs-8 col-sm-6'>
+                  <span style={styles.slashWrapper}>
+                    <span style={styles.slashLeft}>/</span>
+                    <TextField
+                      autoCapitalize='off'
+                      autoCorrect='off'
+                      floatingLabelText='Pattern'
+                      floatingLabelStyle={styles.floatingLabel}
+                      value={this.state.pattern}
+                      onChange={this.handlePatternChange}
+                      style={styles.patternField}
+                      ref='pattern'
+                      errorText={errorMessage}
+                      underlineStyle={styles.underline}
+                      underlineFocusStyle={styles.underlineFocus}
+                    />
+                    <span style={styles.slashRight}>/</span>
+                  </span>
+                </div>
+                <div className='col-xs-4 col-sm-4'>
+                  <span style={styles.flagsFieldSpan}>
+                    <TextField
+                      autoCapitalize='off'
+                      autoCorrect='off'
+                      floatingLabelText='Flags'
+                      floatingLabelStyle={styles.floatingLabel}
+                      value={this.state.flags}
+                      onChange={this.handleFlagsChange}
+                      style={styles.flagsField}
+                      ref='flags'
+                      underlineStyle={styles.underline}
+                      underlineFocusStyle={styles.underlineFocus}
+                    />
+                  </span>
+                </div>
+                <div className='col-sm-2 col-xs-12'>
+                  <RaisedButton
+                    label='Example'
+                    style={styles.exampleButton}
+                    onClick={this.handleClickExample}
+                  />
+                </div>
+              </div>
             </div>
             <br />
             <ReactCSSTransitionGroup

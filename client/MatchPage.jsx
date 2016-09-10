@@ -7,6 +7,7 @@ import ContentRemove from 'material-ui/svg-icons/content/remove';
 import RaisedButton from 'material-ui/RaisedButton';
 import MatchBox from './MatchBox.jsx';
 import RegexReference from './RegexReference.jsx';
+import Query from './Query.js';
 
 const styles = {
   actionButton: {
@@ -78,9 +79,9 @@ const styles = {
 var MatchPage =  React.createClass({
   getInitialState: function() {
     return {
-      pattern: '',
-      flags: '',
-      matchBoxValues: ['']
+      pattern: Query('pattern') || '',
+      flags: Query('flags') || '',
+      matchBoxValues: [Query('matches') || '']
     };
   },
 

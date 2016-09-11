@@ -102,7 +102,8 @@ var RegexReference = React.createClass({
   render: function() {
     return (
       <Paper style={style}>
-
+        <br/>
+        <h1 style={{textAlign: 'center'}}>Click below to view an example.</h1>
         <Subheader>Selectors</Subheader>
         <div style={style.chipContainer}>
           {selectors.map(this.renderChip)}

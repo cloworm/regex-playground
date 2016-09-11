@@ -61,6 +61,7 @@ var Share = React.createClass({
         <CopyToClipboard text={shareLink}>
           <IconButton
             tooltip="Copy Permalink to Clipboard"
+            tooltipPosition='bottom-left'
             onTouchTap={this.handleTouchTap}
           >
             <Copy />

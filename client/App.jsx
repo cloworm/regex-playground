@@ -12,9 +12,7 @@ var App = React.createClass({
     return (
       <MuiThemeProvider>
         <div>
-          <div className='container-fluid'>
-            <MatchPage />
-          </div>
+          <MatchPage />
         </div>
       </MuiThemeProvider>
     );

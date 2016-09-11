@@ -9,6 +9,7 @@ import MatchBox from './MatchBox.jsx';
 import RegexReference from './RegexReference.jsx';
 import Query from './Query.js';
 import Share from './Share.jsx';
+import AppBar from 'material-ui/AppBar';
 
 const styles = {
   actionButton: {
@@ -46,6 +47,9 @@ const styles = {
     float: 'left',
     width: '100%'
   },
+  rightNav: {
+    width: '50%'
+  },
   slashLeft: {
     position: 'absolute',
     top: '42px',
@@ -64,8 +68,6 @@ const styles = {
   },
   title: {
     color: '#fff',
-    fontSize: '2.2rem',
-    paddingTop: '20px',
     textShadow:
       '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
   },
@@ -149,10 +151,21 @@ var MatchPage =  React.createClass({
 
     return (
       <div>
+      <AppBar
+        title="RegEx Playground"
+        titleStyle={styles.title}
+        iconStyleRight={styles.rightNav}
+        iconElementRight={<Share
+              pattern={this.state.pattern}
+              flags={this.state.flags}
+              matches={this.state.matchBoxValues}
+            />}
+        showMenuIconButton={false}
+      />
+      <div className='container-fluid'>
         <div className='row'>
           <div className='col-xs-12 col-md-8'>
             <div className='container-fluid'>
-              <h1 style={styles.title}>RegEx Playground <a href='http://github.com/cloworm' target='_blank' style={styles.link}>BY CLOWORM</a></h1>
               <div className='row bottom-xs'>
                 <div className='col-xs-8 col-sm-6'>
                   <span style={styles.slashWrapper}>
@@ -228,16 +241,12 @@ var MatchPage =  React.createClass({
             }
           </div>
           <div className='col-xs-12 col-md-4'>
-            <Share
-              pattern={this.state.pattern}
-              flags={this.state.flags}
-              matches={this.state.matchBoxValues}
-            />
             <RegexReference
               onClickChip={this.handleClickChip}
             />
           </div>
         </div>
+      </div>
       </div>
     );
   }

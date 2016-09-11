@@ -8,6 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import MatchBox from './MatchBox.jsx';
 import RegexReference from './RegexReference.jsx';
 import Query from './Query.js';
+import Share from './Share.jsx';
 
 const styles = {
   actionButton: {
@@ -81,7 +82,7 @@ var MatchPage =  React.createClass({
     return {
       pattern: Query('pattern') || '',
       flags: Query('flags') || '',
-      matchBoxValues: [Query('matches') || '']
+      matchBoxValues: Query('matches[]') || ['']
     };
   },
 
@@ -227,6 +228,11 @@ var MatchPage =  React.createClass({
             }
           </div>
           <div className='col-xs-12 col-md-4'>
+            <Share
+              pattern={this.state.pattern}
+              flags={this.state.flags}
+              matches={this.state.matchBoxValues}
+            />
             <RegexReference
               onClickChip={this.handleClickChip}
             />

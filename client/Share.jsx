@@ -3,6 +3,7 @@ import TextField from 'material-ui/TextField';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import IconButton from 'material-ui/IconButton';
 import Copy from 'material-ui/svg-icons/content/content-copy';
+import ShareLink from './ShareLink.js';
 
 const styles = {
   button: {
@@ -23,34 +24,14 @@ const styles = {
 };
 
 var Share = React.createClass({
-  shareLink: function() {
-    var url = `${window.location.protocol}//${window.location.host}`;
-    var params = [];
-    if (this.props.pattern.length > 0) {
-      if (params.length < 1) url += '?';
-      params.push(`pattern=${encodeURIComponent(this.props.pattern)}`);
-    }
-    if (this.props.flags.length > 0) {
-      if (params.length < 1) url += '?';
-      params.push(`flags=${encodeURIComponent(this.props.flags)}`);
-    }
-    if (this.props.matches.length > 0 && this.props.matches[0] !== '') {
-      if (params.length < 1) url += '?';
-      this.props.matches.forEach(function(match) {
-        params.push(`matches[]=${encodeURIComponent(match)}`);
-      })
-    }
-
-    return url + params.join('&');
-  },
-
   render: function() {
+    var shareLink = ShareLink(this.props.pattern, this.props.flags, this.props.matches);
     return (
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-xs-12 col-sm-5' style={styles.permalink}>
             Permalink:
-            <CopyToClipboard text={this.shareLink()}>
+            <CopyToClipboard text={shareLink}>
               <IconButton style={styles.button} tooltip="Copy to Clipboard">
                 <Copy />
               </IconButton>
@@ -61,7 +42,7 @@ var Share = React.createClass({
               name='shareLink'
               readOnly='readOnly'
               fullWidth={true}
-              value={this.shareLink()}
+              value={shareLink}
               ref='shareLink'
               underlineFocusStyle={styles.underlineFocus}
             />

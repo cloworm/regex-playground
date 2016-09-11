@@ -65,9 +65,6 @@ const styles = {
     float: 'left',
     width: '100%'
   },
-  rightNav: {
-    width: '70%'
-  },
   slashLeft: {
     position: 'absolute',
     top: '42px',
@@ -178,11 +175,15 @@ var MatchPage =  React.createClass({
           style={styles.appBar}
           iconElementLeft={<IconButton style={styles.logo}><img src='logo.svg' /></IconButton>}
         >
-          <Share
-            pattern={this.state.pattern}
-            flags={this.state.flags}
-            matches={this.state.matchBoxValues}
-          />
+          <div className='row'>
+            <div className='col-xs-12'>
+              <Share
+                pattern={this.state.pattern}
+                flags={this.state.flags}
+                matches={this.state.matchBoxValues}
+              />
+            </div>
+          </div>
         </AppBar>
         <div className='container-fluid'>
           <div className='row'>

@@ -17,7 +17,8 @@ const styles = {
     paddingRight: '0'
   },
   textArea: {
-    height: '64px'
+    height: '64px',
+    width: '229px'
   },
   underlineFocus: {
     borderColor: '#000'
@@ -46,7 +47,8 @@ var Share = React.createClass({
   render: function() {
     var shareLink = ShareLink(this.props.pattern, this.props.flags, this.props.matches);
     return (
-      <div>
+      <div className='row'>
+        <div className='col-xs-12'>
         <TextField
           name='shareLink'
           floatingLabelText='Permalink'
@@ -58,7 +60,7 @@ var Share = React.createClass({
         />
         <CopyToClipboard text={shareLink}>
           <IconButton
-            tooltip="Copy to Clipboard"
+            tooltip="Copy Permalink to Clipboard"
             onTouchTap={this.handleTouchTap}
           >
             <Copy />
@@ -70,6 +72,7 @@ var Share = React.createClass({
           autoHideDuration={2000}
           onRequestClose={this.handleRequestClose}
         />
+        </div>
       </div>
     );
   }

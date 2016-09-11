@@ -10,6 +10,7 @@ import RegexReference from './RegexReference.jsx';
 import Query from './Query.js';
 import Share from './Share.jsx';
 import AppBar from 'material-ui/AppBar';
+import ShareLink from './ShareLink.js';
 
 const styles = {
   actionButton: {
@@ -96,6 +97,10 @@ var MatchPage =  React.createClass({
       flags: Query('flags') || '',
       matchBoxValues: Query('matches[]') || ['']
     };
+  },
+
+  componentDidUpdate: function() {
+    window.history.replaceState('', document.title, ShareLink(this.state.pattern, this.state.flags, this.state.matchBoxValues));
   },
 
   handleClickClear: function() {

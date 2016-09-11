@@ -2,10 +2,13 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import Subheader from 'material-ui/Subheader';
 import TextField from 'material-ui/TextField';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import IconButton from 'material-ui/IconButton';
+import Copy from 'material-ui/svg-icons/content/content-copy';
 
 const styles = {
   display: 'inline-block',
-  margin: '16px 32px 16px 0',
+  marginLeft: '0',
   width: '100%',
   floatingLabelFocus: {
     color: '#000',
@@ -44,21 +47,25 @@ var Share = React.createClass({
   render: function() {
     return (
       <Paper style={styles}>
-        <Subheader>Share</Subheader>
-        <TextField
-          autoCapitalize='off'
-          autoCorrect='off'
-          floatingLabelText='Copy Link'
-          floatingLabelFocusStyle={styles.floatingLabelFocus}
-          floatingLabelFixed={true}
-          multiLine={true}
-          fullWidth={true}
-          rows={3}
-          value={this.shareLink()}
-          onChange={this.handleLinkChange}
-          ref='matchText'
-          underlineFocusStyle={styles.underlineFocus}
-        />
+        <div className='container-fluid'>
+          <TextField
+            autoCapitalize='off'
+            autoCorrect='off'
+            name='shareLink'
+            floatingLabelText='Share'
+            id='shareLink'
+            readOnly='readOnly'
+            value={this.shareLink()}
+            onChange={this.handleLinkChange}
+            ref='shareLink'
+            underlineFocusStyle={styles.underlineFocus}
+          />
+          <CopyToClipboard className='button' text={this.shareLink()}>
+            <IconButton style={{display: 'inline-block'}} tooltip="Copy to Clipboard">
+              <Copy />
+            </IconButton>
+          </CopyToClipboard>
+        </div>
       </Paper>
     );
   }

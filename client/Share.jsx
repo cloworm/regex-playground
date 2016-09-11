@@ -16,6 +16,9 @@ const styles = {
     textAlign: 'right',
     paddingRight: '0'
   },
+  textArea: {
+    height: '64px'
+  },
   underlineFocus: {
     borderColor: '#000'
   },
@@ -51,6 +54,7 @@ var Share = React.createClass({
           value={shareLink}
           ref='shareLink'
           underlineFocusStyle={styles.underlineFocus}
+          style={styles.textArea}
         />
         <CopyToClipboard text={shareLink}>
           <IconButton

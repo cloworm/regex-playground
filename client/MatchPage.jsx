@@ -11,6 +11,7 @@ import Query from './Query.js';
 import Share from './Share.jsx';
 import AppBar from 'material-ui/AppBar';
 import ShareLink from './ShareLink.js';
+import IconButton from 'material-ui/IconButton';
 
 const styles = {
   actionButton: {
@@ -53,6 +54,10 @@ const styles = {
     textDecoration: 'none',
     textShadow: 'none',
   },
+  logo: {
+    padding: '2px',
+    marginLeft: '10px'
+  },
   matchBoxMargin: {
     margin: '15px'
   },
@@ -80,6 +85,7 @@ const styles = {
     width: '100%'
   },
   title: {
+    fontFamily: 'Montserrat, sans-serif',
     color: '#e91e63',
   },
   underline: {
@@ -170,7 +176,7 @@ var MatchPage =  React.createClass({
           title="RegEx Playground"
           titleStyle={styles.title}
           style={styles.appBar}
-          showMenuIconButton={false}
+          iconElementLeft={<IconButton style={styles.logo}><img src='logo.svg' /></IconButton>}
         >
           <Share
             pattern={this.state.pattern}
@@ -265,7 +271,7 @@ var MatchPage =  React.createClass({
         </div>
         <footer style={styles.footer}>
           <div className='container-fluid'>
-            made by <a style={styles.link} href='http://www.github.com/cloworm' target='_blank'><img style={styles.github} src='github.png' /> cloworm</a>
+            <a style={styles.link} href='http://www.github.com/cloworm' target='_blank'><img style={styles.github} src='github.png' /> cloworm</a> © 2016
           </div>
         </footer>
       </div>

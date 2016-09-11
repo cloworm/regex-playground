@@ -11,9 +11,7 @@ var App = React.createClass({
   render: function() {
     return (
       <MuiThemeProvider>
-        <div>
-          <MatchPage />
-        </div>
+        <MatchPage />
       </MuiThemeProvider>
     );
   }

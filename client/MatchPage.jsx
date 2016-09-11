@@ -10,10 +10,6 @@ import RegexReference from './RegexReference.jsx';
 import Query from './Query.js';
 import Share from './Share.jsx';
 import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
-import Info from 'material-ui/svg-icons/action/info-outline';
-import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
-
 
 const styles = {
   actionButton: {

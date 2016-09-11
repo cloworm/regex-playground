@@ -5,10 +5,15 @@ import Subheader from 'material-ui/Subheader';
 import Chip from 'material-ui/Chip';
 import Tooltip from 'rc-tooltip';
 
-const style = {
-  display: 'inline-block',
-  margin: '16px 32px 16px 0',
-  width: '100%',
+const styles = {
+  header: {
+    textAlign: 'center'
+  },
+  paper: {
+    display: 'inline-block',
+    margin: '16px 32px 16px 0',
+    width: '100%',
+  },
   chipContainer: {
     padding: '0 5px 5px 5px',
     display: 'inline-block'
@@ -83,7 +88,7 @@ var RegexReference = React.createClass({
 
   renderChip: function(obj) {
     return (
-      <div style={style.chipContainer} key={obj.name}>
+      <div style={styles.chipContainer} key={obj.name}>
         <Tooltip
           placement='top'
           overlay={<div>{obj.tip}</div>}
@@ -101,47 +106,47 @@ var RegexReference = React.createClass({
 
   render: function() {
     return (
-      <Paper style={style}>
+      <Paper style={styles.paper}>
         <br/>
-        <h1 style={{textAlign: 'center'}}>Click below to view an example.</h1>
+        <h1 style={styles.header}>Click below to view an example.</h1>
         <Subheader>Selectors</Subheader>
-        <div style={style.chipContainer}>
+        <div style={styles.chipContainer}>
           {selectors.map(this.renderChip)}
         </div>
         <Divider />
 
         <Subheader>Flags</Subheader>
-        <div style={style.chipContainer}>
+        <div style={styles.chipContainer}>
           {flags.map(this.renderChip)}
         </div>
         <Divider />
 
         <Subheader>Counts</Subheader>
-        <div style={style.chipContainer}>
+        <div style={styles.chipContainer}>
           {counts.map(this.renderChip)}
         </div>
         <Divider />
 
         <Subheader>Position</Subheader>
-        <div style={style.chipContainer}>
+        <div style={styles.chipContainer}>
           {positions.map(this.renderChip)}
         </div>
         <Divider />
 
         <Subheader>Groups</Subheader>
-        <div style={style.chipContainer}>
+        <div style={styles.chipContainer}>
           {groups.map(this.renderChip)}
         </div>
         <Divider />
 
         <Subheader>Special characters</Subheader>
-        <div style={style.chipContainer}>
+        <div style={styles.chipContainer}>
           {specials.map(this.renderChip)}
         </div>
         <Divider />
 
         <Subheader>Charcters to escape with \</Subheader>
-        <div style={style.chipContainer}>
+        <div style={styles.chipContainer}>
           {escapes.map(this.renderChip)}
         </div>
       </Paper>

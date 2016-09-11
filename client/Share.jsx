@@ -48,7 +48,7 @@ var Share = React.createClass({
     return (
       <div className='container-fluid'>
         <div className='row'>
-          <div className='col-xs-3' style={styles.permalink}>
+          <div className='col-xs-12 col-sm-5' style={styles.permalink}>
             Permalink:
             <CopyToClipboard text={this.shareLink()}>
               <IconButton style={styles.button} tooltip="Copy to Clipboard">
@@ -56,7 +56,7 @@ var Share = React.createClass({
               </IconButton>
             </CopyToClipboard>
           </div>
-          <div className='col-xs-9'>
+          <div className='col-xs-12 col-sm-7'>
             <TextField
               name='shareLink'
               readOnly='readOnly'

@@ -8,7 +8,6 @@ import MatchPage from './MatchPage.jsx';
 
 var App = React.createClass({
 
-
   render: function() {
     return (
       <MuiThemeProvider>

@@ -11,11 +11,7 @@ var App = React.createClass({
   render: function() {
     return (
       <MuiThemeProvider>
-        <div>
-          <div className='container-fluid'>
-            <MatchPage />
-          </div>
-        </div>
+        <MatchPage />
       </MuiThemeProvider>
     );
   }

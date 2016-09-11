@@ -9,11 +9,15 @@ import MatchBox from './MatchBox.jsx';
 import RegexReference from './RegexReference.jsx';
 import Query from './Query.js';
 import Share from './Share.jsx';
+import AppBar from 'material-ui/AppBar';
 
 const styles = {
   actionButton: {
     float: 'right',
     marginRight: '10px',
+  },
+  appBar: {
+    backgroundColor: '#fff'
   },
   clearButton: {
     marginBottom: '10px',
@@ -30,11 +34,20 @@ const styles = {
   floatingLabel: {
     color: '#000'
   },
+  footer: {
+    backgroundColor: '#e91e63',
+    color: '#fff',
+    lineHeight: '50px',
+    height: '50px',
+    marginBottom: '0'
+  },
+  github: {
+    height: '1rem'
+  },
   iconFill: {
-    fill:'#000'
+    fill: '#000'
   },
   link: {
-    fontSize: '.8rem',
     color:'#fff',
     textDecoration: 'none',
     textShadow: 'none',
@@ -45,6 +58,9 @@ const styles = {
   patternField: {
     float: 'left',
     width: '100%'
+  },
+  rightNav: {
+    width: '70%'
   },
   slashLeft: {
     position: 'absolute',
@@ -63,11 +79,7 @@ const styles = {
     width: '100%'
   },
   title: {
-    color: '#fff',
-    fontSize: '2.2rem',
-    paddingTop: '20px',
-    textShadow:
-      '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
+    color: '#e91e63',
   },
   underline: {
     borderColor: '#000'
@@ -149,95 +161,108 @@ var MatchPage =  React.createClass({
 
     return (
       <div>
-        <div className='row'>
-          <div className='col-xs-12 col-md-8'>
-            <div className='container-fluid'>
-              <h1 style={styles.title}>RegEx Playground <a href='http://github.com/cloworm' target='_blank' style={styles.link}>BY CLOWORM</a></h1>
-              <div className='row bottom-xs'>
-                <div className='col-xs-8 col-sm-6'>
-                  <span style={styles.slashWrapper}>
-                    <span style={styles.slashLeft}>/</span>
-                    <TextField
-                      autoCapitalize='off'
-                      autoCorrect='off'
-                      floatingLabelText='Pattern'
-                      floatingLabelStyle={styles.floatingLabel}
-                      value={this.state.pattern}
-                      onChange={this.handlePatternChange}
-                      style={styles.patternField}
-                      ref='pattern'
-                      errorText={errorMessage}
-                      underlineStyle={styles.underline}
-                      underlineFocusStyle={styles.underlineFocus}
+        <AppBar
+          title="RegEx Playground"
+          titleStyle={styles.title}
+          iconStyleRight={styles.rightNav}
+          iconElementRight={<Share
+            pattern={this.state.pattern}
+            flags={this.state.flags}
+            matches={this.state.matchBoxValues}
+          />}
+          style={styles.appBar}
+          showMenuIconButton={false}
+        />
+        <div className='container-fluid'>
+          <div className='row'>
+            <div className='col-xs-12 col-md-8'>
+              <div className='container-fluid'>
+                <div className='row bottom-xs'>
+                  <div className='col-xs-8 col-sm-6'>
+                    <span style={styles.slashWrapper}>
+                      <span style={styles.slashLeft}>/</span>
+                      <TextField
+                        autoCapitalize='off'
+                        autoCorrect='off'
+                        floatingLabelText='Pattern'
+                        floatingLabelStyle={styles.floatingLabel}
+                        value={this.state.pattern}
+                        onChange={this.handlePatternChange}
+                        style={styles.patternField}
+                        ref='pattern'
+                        errorText={errorMessage}
+                        underlineStyle={styles.underline}
+                        underlineFocusStyle={styles.underlineFocus}
+                      />
+                      <span style={styles.slashRight}>/</span>
+                    </span>
+                  </div>
+                  <div className='col-xs-4 col-sm-4'>
+                    <span style={styles.flagsFieldSpan}>
+                      <TextField
+                        autoCapitalize='off'
+                        autoCorrect='off'
+                        floatingLabelText='Flags'
+                        floatingLabelStyle={styles.floatingLabel}
+                        value={this.state.flags}
+                        onChange={this.handleFlagsChange}
+                        style={styles.flagsField}
+                        ref='flags'
+                        underlineStyle={styles.underline}
+                        underlineFocusStyle={styles.underlineFocus}
+                      />
+                    </span>
+                  </div>
+                  <div className='col-sm-2 col-xs-12'>
+                    <RaisedButton
+                      label='Clear'
+                      style={styles.clearButton}
+                      onClick={this.handleClickClear}
                     />
-                    <span style={styles.slashRight}>/</span>
-                  </span>
-                </div>
-                <div className='col-xs-4 col-sm-4'>
-                  <span style={styles.flagsFieldSpan}>
-                    <TextField
-                      autoCapitalize='off'
-                      autoCorrect='off'
-                      floatingLabelText='Flags'
-                      floatingLabelStyle={styles.floatingLabel}
-                      value={this.state.flags}
-                      onChange={this.handleFlagsChange}
-                      style={styles.flagsField}
-                      ref='flags'
-                      underlineStyle={styles.underline}
-                      underlineFocusStyle={styles.underlineFocus}
-                    />
-                  </span>
-                </div>
-                <div className='col-sm-2 col-xs-12'>
-                  <RaisedButton
-                    label='Clear'
-                    style={styles.clearButton}
-                    onClick={this.handleClickClear}
-                  />
+                  </div>
                 </div>
               </div>
-            </div>
-            <br />
-            <ReactCSSTransitionGroup
-              transitionName='right-side-fade'
-              transitionEnterTimeout={500}
-              transitionLeaveTimeout={300}
-            >
-              {this.renderMatchBoxes(re)}
-            </ReactCSSTransitionGroup>
-            <FloatingActionButton
-              backgroundColor='#fff'
-              mini={true}
-              style={styles.actionButton}
-              onClick={this.handleNewMatchBox}
-              iconStyle={styles.iconFill}
-            >
-              <ContentAdd />
-            </FloatingActionButton>
-            {(this.state.matchBoxValues.length > 1) ?
+              <br />
+              <ReactCSSTransitionGroup
+                transitionName='right-side-fade'
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={300}
+              >
+                {this.renderMatchBoxes(re)}
+              </ReactCSSTransitionGroup>
               <FloatingActionButton
-                backgroundColor='#bdc3c7'
+                backgroundColor='#fff'
                 mini={true}
                 style={styles.actionButton}
-                onClick={this.handleRemoveMatchBox}
+                onClick={this.handleNewMatchBox}
                 iconStyle={styles.iconFill}
               >
-                <ContentRemove />
-              </FloatingActionButton> : null
-            }
-          </div>
-          <div className='col-xs-12 col-md-4'>
-            <Share
-              pattern={this.state.pattern}
-              flags={this.state.flags}
-              matches={this.state.matchBoxValues}
-            />
-            <RegexReference
-              onClickChip={this.handleClickChip}
-            />
+                <ContentAdd />
+              </FloatingActionButton>
+              {(this.state.matchBoxValues.length > 1) ?
+                <FloatingActionButton
+                  backgroundColor='#bdc3c7'
+                  mini={true}
+                  style={styles.actionButton}
+                  onClick={this.handleRemoveMatchBox}
+                  iconStyle={styles.iconFill}
+                >
+                  <ContentRemove />
+                </FloatingActionButton> : null
+              }
+            </div>
+            <div className='col-xs-12 col-md-4'>
+              <RegexReference
+                onClickChip={this.handleClickChip}
+              />
+            </div>
           </div>
         </div>
+        <footer style={styles.footer}>
+          <div className='container-fluid'>
+            made by <a style={styles.link} href='http://www.github.com/cloworm' target='_blank'><img style={styles.github} src='github.png' /> cloworm</a>
+          </div>
+        </footer>
       </div>
     );
   }

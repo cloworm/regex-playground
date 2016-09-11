@@ -1,5 +1,4 @@
 import React from 'react';
-import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import IconButton from 'material-ui/IconButton';
@@ -13,6 +12,10 @@ const styles = {
     display: 'inline-block',
     marginLeft: '0',
     width: '100%'
+  },
+  permalink: {
+    textAlign: 'right',
+    paddingRight: '0'
   },
   underlineFocus: {
     borderColor: '#000'
@@ -43,23 +46,28 @@ var Share = React.createClass({
 
   render: function() {
     return (
-      <Paper style={styles.paper}>
-        <div className='container-fluid'>
-          <TextField
-            name='shareLink'
-            floatingLabelText='Share'
-            readOnly='readOnly'
-            value={this.shareLink()}
-            ref='shareLink'
-            underlineFocusStyle={styles.underlineFocus}
-          />
-          <CopyToClipboard text={this.shareLink()}>
-            <IconButton style={styles.button} tooltip="Copy to Clipboard">
-              <Copy />
-            </IconButton>
-          </CopyToClipboard>
+      <div className='container-fluid'>
+        <div className='row'>
+          <div className='col-xs-12 col-sm-5' style={styles.permalink}>
+            Permalink:
+            <CopyToClipboard text={this.shareLink()}>
+              <IconButton style={styles.button} tooltip="Copy to Clipboard">
+                <Copy />
+              </IconButton>
+            </CopyToClipboard>
+          </div>
+          <div className='col-xs-12 col-sm-7'>
+            <TextField
+              name='shareLink'
+              readOnly='readOnly'
+              fullWidth={true}
+              value={this.shareLink()}
+              ref='shareLink'
+              underlineFocusStyle={styles.underlineFocus}
+            />
+          </div>
         </div>
-      </Paper>
+      </div>
     );
   }
 })

@@ -166,10 +166,10 @@ var MatchPage =  React.createClass({
           titleStyle={styles.title}
           iconStyleRight={styles.rightNav}
           iconElementRight={<Share
-                pattern={this.state.pattern}
-                flags={this.state.flags}
-                matches={this.state.matchBoxValues}
-              />}
+            pattern={this.state.pattern}
+            flags={this.state.flags}
+            matches={this.state.matchBoxValues}
+          />}
           style={styles.appBar}
           showMenuIconButton={false}
         />

@@ -60,7 +60,7 @@ var Share = React.createClass({
             ref='shareLink'
             underlineFocusStyle={styles.underlineFocus}
           />
-          <CopyToClipboard className='button' text={this.shareLink()}>
+          <CopyToClipboard text={this.shareLink()}>
             <IconButton style={{display: 'inline-block'}} tooltip="Copy to Clipboard">
               <Copy />
             </IconButton>

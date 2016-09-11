@@ -169,15 +169,15 @@ var MatchPage =  React.createClass({
         <AppBar
           title="RegEx Playground"
           titleStyle={styles.title}
-          iconStyleRight={styles.rightNav}
-          iconElementRight={<Share
+          style={styles.appBar}
+          showMenuIconButton={false}
+        >
+          <Share
             pattern={this.state.pattern}
             flags={this.state.flags}
             matches={this.state.matchBoxValues}
-          />}
-          style={styles.appBar}
-          showMenuIconButton={false}
-        />
+          />
+        </AppBar>
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-xs-12 col-md-8'>

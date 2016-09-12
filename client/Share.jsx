@@ -32,7 +32,7 @@ var Share = React.createClass({
     }
   },
 
-  handleTouchTap: function() {
+  handleCopyPermalink: function() {
     this.setState({
       open: true
     });
@@ -58,11 +58,13 @@ var Share = React.createClass({
           underlineFocusStyle={styles.underlineFocus}
           style={styles.textArea}
         />
-        <CopyToClipboard text={shareLink}>
+        <CopyToClipboard
+          text={shareLink}
+          onCopy={this.handleCopyPermalink}
+        >
           <IconButton
             tooltip="Copy Permalink to Clipboard"
             tooltipPosition='bottom-left'
-            onTouchTap={this.handleTouchTap}
           >
             <Copy />
           </IconButton>

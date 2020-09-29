@@ -2,10 +2,11 @@ module.exports = function getURLParam(name, url){
   var values = [];
   if (!url) url = location.href;
 
-  var escapedName = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+  var nameWithoutBrackets = name.replace(/\[\]/g, '');
+  var multiple = name !== nameWithoutBrackets;
+  var pattern = nameWithoutBrackets + "(?:\\[\\]|%5B%5D)*=([^&#]+)";
 
-  var pattern = escapedName + '=([^&#]+)';
-  var reg = new RegExp(pattern,'ig');
+  var reg = new RegExp(pattern, 'ig');
   while (true) {
     var matches = reg.exec(url);
     if (matches && matches[1]){
@@ -17,7 +18,7 @@ module.exports = function getURLParam(name, url){
 
   if (!values.length){
     return null;
-  } else if (name.includes('[]')){
+  } else if (multiple){
     return values;
   } else {
     return values[0];
